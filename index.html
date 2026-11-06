@@ -122,11 +122,11 @@ kbd{font-family:var(--mono);font-size:22px;border:1px solid var(--line2);border-
 .spot.on .box{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);box-shadow:0 0 0 2000px rgba(5,9,7,.45),0 0 30px var(--c);z-index:2}
 .spot.on .num{transform:scale(1.25);background:var(--c);color:#06100b;z-index:3}
 .spot.on{z-index:5}
-.info{padding:26px 30px;height:478px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.info{padding:28px 32px;height:430px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
 .info .n{font:600 26px var(--mono);color:var(--c)}
 .info h3{font-family:var(--disp);font-size:40px;line-height:1.05;font-weight:600}
 .info .sub{font-family:var(--mono);font-size:24px;color:var(--c)}
-.info p{font-size:24px;line-height:1.4;color:var(--ink2);margin-top:4px}
+.info p{font-size:25px;line-height:1.42;color:var(--ink2);margin-top:4px}
 .info .talk{margin-top:auto;font-family:var(--mono);font-size:24px;color:var(--mute)}
 .info .talk b{color:var(--ink);font-weight:600}
 .idx{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:18px}
@@ -135,15 +135,6 @@ kbd{font-family:var(--mono);font-size:22px;border:1px solid var(--line2);border-
 .idx button.on{background:var(--c);color:#06100b;border-color:var(--c)}
 .legend{display:flex;gap:6px 18px;margin-top:16px;font-family:var(--mono);font-size:22px;color:var(--mute);flex-wrap:wrap}
 .legend span{display:flex;align-items:center;gap:10px}
-.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-.acts .go,.acts .doc{font:500 22px var(--mono);padding:8px 16px;border-radius:10px;cursor:pointer;text-decoration:none;white-space:nowrap}
-.acts .go{background:var(--c);color:#06100b;border:0}
-.acts .doc{border:1px solid var(--line2);color:var(--ink2);background:#0f1713}
-.acts .go:hover{filter:brightness(1.12)}.acts .doc:hover{border-color:var(--c);color:var(--ink)}
-#backMap{position:absolute;right:120px;top:52px;z-index:60;font:600 24px var(--mono);padding:12px 22px;border-radius:999px;border:1px solid var(--cyan);
-  background:rgba(10,20,18,.92);color:var(--ink);cursor:pointer;box-shadow:0 0 24px rgba(63,210,230,.35);animation:rise .5s cubic-bezier(.2,.75,.2,1) both}
-#backMap:hover{background:var(--cyan);color:#06100b}
-.spot{cursor:pointer}
 /* ---------- arch diagram ---------- */
 svg.arch{width:100%;height:auto;overflow:visible}
 .arch .node rect.b{fill:#111a16;stroke:#2b3c34;stroke-width:1.5}
@@ -656,7 +647,6 @@ body.og #s-cover .start,body.og #hint{display:none!important}
   </div>
 </section>
 
-<button id="backMap" hidden>← Back to the board map</button>
 <div id="chrome">
   <div id="chap"></div>
   <div id="prog"></div>
@@ -675,42 +665,41 @@ body.og #s-cover .start,body.og #hint{display:none!important}
 if(/still|og/.test(location.search))document.body.classList.add('still');
 if(/og/.test(location.search))document.body.classList.add('og');
 const TOP={src:'img/board-top.jpg',W:1600,H:1018}, BACK={src:'img/board-back.jpg',W:1600,H:1200};
-const HOVER=matchMedia('(hover:hover) and (pointer:fine)').matches;
 const C={soc:'#ff4f7e',data:'#3fd2e6',pwr:'#f5ae3d',exp:'#a6e35a',mem:'#a78bfa'};
 
 /* ---------- landmarks (coords in a 1600-wide copy of your photo) ---------- */
 const TOPS=[
- {k:'soc',go:'s-soc',doc:'https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712',c:C.soc,r:[432,445,275,265],t:'BCM2712 SoC',s:'Broadcom · under the metal lid',p:'The brain: four Cortex-A76 cores at 2.4 GHz, the VideoCore VII GPU, the memory controller and both HDMI outputs.',w:'everything'},
- {k:'ram',go:'s-ram',doc:'https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf',c:C.mem,r:[450,235,240,175],t:'LPDDR4X memory',s:'Micron · 32-bit · 4267 MT/s',p:'Working memory. Only the SoC touches it, at about 17 GB/s.',w:'BCM2712'},
- {k:'rp1',go:'s-rp1',doc:'https://www.raspberrypi.com/documentation/computers/io-controllers.html#rp1-overview',c:C.data,r:[865,290,190,190],t:'RP1 I/O controller',s:'designed by Raspberry Pi',p:'Runs USB, Ethernet, cameras, displays and the GPIO header, then hands it all to the SoC over PCIe.',w:'BCM2712 (PCIe ×4)'},
- {k:'pmic',go:'s-pmic',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply',c:C.pwr,r:[160,640,130,120],t:'Power management IC',s:'Renesas DA9091',p:'Makes each chip\'s low voltage from the 5 V input with eight switching regulators. Also holds the clock.',w:'every chip (power)'},
- {k:'wifi',go:'s-net',doc:'https://www.raspberrypi.com/documentation/computers/configuration.html#wireless-connection',c:C.data,r:[150,165,180,200],t:'Wireless module',s:'Infineon CYW43455 under the can',p:'Dual-band Wi-Fi 5 and Bluetooth 5.0. The shield blocks interference.',w:'BCM2712 via SDIO + UART'},
- {k:'phy',go:'s-net',doc:'https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf',c:C.data,r:[985,505,130,125],t:'Ethernet PHY',s:'Broadcom BCM54213',p:'Converts RP1\'s digital Ethernet into the analog signals on the cable, and back.',w:'RP1 via RGMII'},
- {k:'gpio',go:'s-gpio',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio',c:C.exp,r:[150,50,805,100],t:'40-pin GPIO header',s:'J8 · HAT+ interface',p:'28 programmable pins plus 5 V, 3.3 V and ground, for sensors, HATs and add-ons.',w:'RP1'},
- {k:'usb2',go:'s-usb',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb',c:C.data,r:[1150,25,410,285],t:'USB 2.0 ports',s:'black · 480 Mb/s',p:'For keyboards, mice and other slow devices.',w:'RP1'},
- {k:'usb3',go:'s-sto',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#universal-serial-bus-usb',c:C.data,r:[1150,355,415,245],t:'USB 3.0 ports',s:'blue · 5 Gb/s each',p:'For fast drives. Each port gets its own full 5 Gb/s.',w:'RP1'},
- {k:'eth',go:'s-net',doc:'https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf',c:C.data,r:[1150,665,395,290],t:'Gigabit Ethernet jack',s:'RJ45 with built-in magnetics',p:'Wired network up to 1 Gb/s. The magnetics isolate the board from the cable.',w:'PHY → RP1'},
- {k:'usbc',go:'s-pow',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply',c:C.pwr,r:[145,840,140,135],t:'USB-C power input',s:'J1 · 5 V, up to 5 A',p:'Power only, no data. Uses USB Power Delivery to check whether the supply can give 5 A.',w:'PMIC'},
- {k:'hdmi0',go:'s-disp',doc:'https://www.raspberrypi.com/documentation/computers/config_txt.html#hdmi-mode',c:C.soc,r:[398,840,108,135],t:'micro-HDMI 0',s:'HDMI0 · 4Kp60',p:'Main display output, driven directly by the SoC.',w:'BCM2712'},
- {k:'hdmi1',go:'s-disp',doc:'https://www.raspberrypi.com/documentation/computers/config_txt.html#hdmi-mode',c:C.soc,r:[612,840,108,135],t:'micro-HDMI 1',s:'HDMI1 · 4Kp60',p:'Second display. Both ports can run 4K at 60 Hz at the same time.',w:'BCM2712'},
- {k:'uart',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/configuration.html#configure-uarts',c:C.exp,r:[512,840,88,75],t:'Debug UART',s:'3-pin JST',p:'A serial console that shows boot messages, even with no screen attached.',w:'BCM2712'},
- {k:'bat',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#real-time-clock-rtc',c:C.pwr,r:[297,840,88,65],t:'RTC battery',s:'J5 · 2-pin',p:'Add a rechargeable cell and the clock keeps time while unplugged.',w:'PMIC (RTC)'},
- {k:'cd0',go:'s-cam',doc:'https://www.raspberrypi.com/documentation/accessories/camera.html',c:C.data,r:[892,675,56,270],t:'CAM/DISP 0',s:'J3 · 22-pin MIPI',p:'4-lane connector for a camera or a DSI display.',w:'RP1'},
- {k:'cd1',go:'s-cam',doc:'https://www.raspberrypi.com/documentation/accessories/camera.html',c:C.data,r:[793,675,57,270],t:'CAM/DISP 1',s:'J4 · 22-pin MIPI',p:'A second camera or display; two cameras can run at once.',w:'RP1'},
- {k:'poe',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-over-ethernet-poe-connector',c:C.pwr,r:[975,745,80,90],t:'PoE header',s:'J14 · 4-pin',p:'Passes power from the Ethernet cable to a PoE+ HAT.',w:'Ethernet jack'},
- {k:'fan',go:'s-cool',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#frequency-management-and-thermal-control',c:C.pwr,r:[1060,60,72,115],t:'Fan connector',s:'4-pin JST',p:'For the Active Cooler: 5 V, ground, PWM speed and tachometer.',w:'RP1 (PWM)'},
- {k:'pcie',go:'s-sto',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-connector-for-pcie',c:C.soc,r:[38,355,82,225],t:'PCIe connector',s:'16-pin FPC · ×1 lane',p:'A PCIe 2.0 lane straight from the SoC, for NVMe SSDs or AI accelerators on a HAT+.',w:'BCM2712'},
- {k:'btn',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-button',c:C.pwr,r:[18,612,80,80],t:'Power button',s:'the first on a Pi',p:'One press opens the shutdown menu; press again to confirm. Hold to force off. Pads marked J2 take an external button.',w:'PMIC'},
- {k:'led',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/configuration.html#led-warning-flash-codes',c:C.exp,r:[52,695,38,72],t:'Status LEDs',s:'STAT green · PWR red',p:'Green flickers with disk activity; red shows power. Blink patterns report boot errors.',w:'BCM2712 · PMIC'},
- {k:'vid',go:'s-small',doc:'https://www.raspberrypi.com/documentation/computers/config_txt.html#composite-video-mode',c:C.data,r:[738,840,40,90],t:'Composite video',s:'J7 · VID pads',p:'Analog TV output (PAL or NTSC) on two solder pads.',w:'RP1'}
+ {k:'soc',c:C.soc,r:[432,445,275,265],t:'BCM2712 system-on-chip',s:'Broadcom · under the metal lid',p:'The brain: four Cortex-A76 cores at 2.4 GHz, the VideoCore VII GPU, the memory controller and both HDMI outputs, in one chip.',w:'everything'},
+ {k:'ram',c:C.mem,r:[450,235,240,175],t:'LPDDR4X memory',s:'Micron · 32-bit · 4267 MT/s',p:'Working memory. Only the SoC touches it, at about 17 GB/s.',w:'BCM2712'},
+ {k:'rp1',c:C.data,r:[865,290,190,190],t:'RP1 I/O controller',s:'designed by Raspberry Pi',p:'Runs USB, Ethernet, the camera/display connectors and the GPIO header, then passes everything to the SoC over PCIe.',w:'BCM2712 via PCIe 2.0 ×4'},
+ {k:'pmic',c:C.pwr,r:[160,640,130,120],t:'Power management IC',s:'Renesas DA9091',p:'Turns 5 V into the low voltages each chip needs, using eight switching regulators. Also contains the real-time clock.',w:'every chip (power)'},
+ {k:'wifi',c:C.data,r:[150,165,180,200],t:'Wireless module',s:'Infineon CYW43455 under the can',p:'Dual-band Wi-Fi 5 and Bluetooth 5.0. The shield blocks interference.',w:'BCM2712 via SDIO + UART'},
+ {k:'phy',c:C.data,r:[985,505,130,125],t:'Ethernet PHY',s:'Broadcom BCM54213',p:'Converts RP1\'s digital Ethernet into the analog signals on the cable, and back.',w:'RP1 via RGMII'},
+ {k:'gpio',c:C.exp,r:[150,50,805,100],t:'40-pin GPIO header',s:'J8 · HAT+ interface',p:'28 programmable pins plus 5 V, 3.3 V and ground, for sensors, HATs and add-ons.',w:'RP1'},
+ {k:'usb2',c:C.data,r:[1150,25,410,285],t:'USB 2.0 ports',s:'black · 480 Mb/s',p:'For keyboards, mice and other slow devices.',w:'RP1'},
+ {k:'usb3',c:C.data,r:[1150,355,415,245],t:'USB 3.0 ports',s:'blue · 5 Gb/s each',p:'For fast drives. Each port gets its own full 5 Gb/s.',w:'RP1'},
+ {k:'eth',c:C.data,r:[1150,665,395,290],t:'Gigabit Ethernet jack',s:'RJ45 with built-in magnetics',p:'Wired network up to 1 Gb/s. The magnetics isolate the board from the cable.',w:'PHY → RP1'},
+ {k:'usbc',c:C.pwr,r:[145,840,140,135],t:'USB-C power input',s:'J1 · 5 V, up to 5 A',p:'Power only, no data. Uses USB Power Delivery to check whether the supply can give 5 A.',w:'PMIC'},
+ {k:'hdmi0',c:C.soc,r:[398,840,108,135],t:'micro-HDMI 0',s:'HDMI0 · 4Kp60',p:'Main display output, driven directly by the SoC.',w:'BCM2712'},
+ {k:'hdmi1',c:C.soc,r:[612,840,108,135],t:'micro-HDMI 1',s:'HDMI1 · 4Kp60',p:'Second display. Both ports can run 4K at 60 Hz at the same time.',w:'BCM2712'},
+ {k:'uart',c:C.exp,r:[512,840,88,75],t:'Debug UART',s:'3-pin JST',p:'A serial console that shows boot messages, even with no screen attached.',w:'BCM2712'},
+ {k:'bat',c:C.pwr,r:[297,840,88,65],t:'RTC battery',s:'J5 · 2-pin',p:'Add a rechargeable cell and the clock keeps time while unplugged.',w:'PMIC (RTC)'},
+ {k:'cd0',c:C.data,r:[892,675,56,270],t:'CAM/DISP 0',s:'J3 · 22-pin MIPI',p:'4-lane connector for a camera or a DSI display.',w:'RP1'},
+ {k:'cd1',c:C.data,r:[793,675,57,270],t:'CAM/DISP 1',s:'J4 · 22-pin MIPI',p:'A second camera or display; two cameras can run at once.',w:'RP1'},
+ {k:'poe',c:C.pwr,r:[975,745,80,90],t:'PoE header',s:'J14 · 4-pin',p:'Passes power from the Ethernet cable to a PoE+ HAT.',w:'Ethernet jack'},
+ {k:'fan',c:C.pwr,r:[1060,60,72,115],t:'Fan connector',s:'4-pin JST',p:'For the Active Cooler: 5 V, ground, PWM speed and tachometer.',w:'RP1 (PWM)'},
+ {k:'pcie',c:C.soc,r:[38,355,82,225],t:'PCIe connector',s:'16-pin FPC · ×1 lane',p:'A PCIe 2.0 lane straight from the SoC, for NVMe SSDs or AI accelerators on a HAT+.',w:'BCM2712'},
+ {k:'btn',c:C.pwr,r:[18,612,80,80],t:'Power button',s:'the first on a Pi',p:'On the desktop, one press opens the shutdown menu and a second press confirms. Hold it to force power off. Pads marked J2 let you wire in an external button.',w:'PMIC'},
+ {k:'led',c:C.exp,r:[52,695,38,72],t:'Status LEDs',s:'STAT green · PWR red',p:'Green flickers with disk activity; red shows power. Blink patterns report boot errors.',w:'BCM2712 · PMIC'},
+ {k:'vid',c:C.data,r:[738,840,40,90],t:'Composite video',s:'J7 · VID pads',p:'Analog TV output (PAL or NTSC) on two solder pads.',w:'RP1'}
 ];
 const BACKS=[
- {k:'sd',go:'s-sto',doc:'https://www.raspberrypi.com/documentation/accessories/sd-cards.html',c:C.soc,r:[1330,445,232,228],t:'microSD slot',s:'SDR104 · push-push',p:'The default boot drive. Talks directly to the SoC at up to 104 MB/s bus speed.',w:'BCM2712'},
- {k:'caps',go:'s-soc',doc:'https://www.raspberrypi.com/documentation/computers/processors.html#bcm2712',c:C.mem,r:[810,560,330,230],t:'Decoupling under the SoC',s:'tiny capacitors',p:'Directly under the processor: small capacitors that steady its power during sudden load spikes.',w:'BCM2712 power'},
- {k:'wp',go:'s-boot',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-boot-eeprom',c:C.pwr,r:[815,850,105,80],t:'FLASH WP pads',s:'TP14 · TP1',p:'Bridge these to write-protect the bootloader flash, so it can\'t be changed.',w:'boot flash'},
- {k:'gpio',go:'s-gpio',doc:'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio',c:C.exp,r:[515,70,950,85],t:'Header solder joints',s:'40 through-hole pins',p:'The GPIO header passes through the board and is soldered here.',w:'J8'},
+ {k:'sd',c:C.soc,r:[1330,445,232,228],t:'microSD slot',s:'SDR104 · push-push',p:'The default boot drive. Talks directly to the SoC at up to 104 MB/s bus speed.',w:'BCM2712'},
+ {k:'caps',c:C.mem,r:[810,560,330,230],t:'Decoupling under the SoC',s:'tiny capacitors',p:'Directly under the processor: small capacitors that steady its power during sudden load spikes.',w:'BCM2712 power'},
+ {k:'wp',c:C.pwr,r:[815,850,105,80],t:'FLASH WP pads',s:'TP14 · TP1',p:'Bridge these to write-protect the bootloader flash, so it can\'t be changed.',w:'boot flash'},
+ {k:'gpio',c:C.exp,r:[515,70,950,85],t:'Header solder joints',s:'40 through-hole pins',p:'The GPIO header passes through the board and is soldered here.',w:'J8'},
  {k:'tp',c:C.data,r:[30,70,330,330],t:'Test points',s:'TP1 … TP76',p:'Labelled pads the factory probes to check rails and signals on every board.',w:'factory test'},
- {k:'reg',doc:'https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf',c:C.data,r:[525,560,300,170],t:'Regulatory marks',s:'FCC ID 2ABCB-RPI5',p:'Radio certifications for the US, Canada, Korea, Brazil, Japan and more, needed because of the Wi-Fi.',w:'—'},
+ {k:'reg',c:C.data,r:[525,560,300,170],t:'Regulatory marks',s:'FCC ID 2ABCB-RPI5',p:'Radio certifications for the US, Canada, Korea, Brazil, Japan and more, needed because of the Wi-Fi.',w:'—'},
  {k:'legs',c:C.pwr,r:[50,430,290,620],t:'Port anchor pins',s:'USB + Ethernet',p:'Through-hole legs that hold the big connectors and tie their shields to ground.',w:'—'},
  {k:'rf',c:C.data,r:[1480,180,90,250],t:'"Uses technology licensed from Abracon"',s:'licensing note',p:'A credit printed for patented technology used on the board.',w:'—'}
 ];
@@ -733,25 +722,18 @@ function makeMap(host,info,idx,list,img,auto){
     const s=document.createElement('div'); s.className='spot'; s.style.setProperty('--c',d.c);
     const [x,y,w,h]=d.r; Object.assign(s.style,{left:x/img.W*100+'%',top:y/img.H*100+'%',width:w/img.W*100+'%',height:h/img.H*100+'%'});
     s.innerHTML=`<div class="box"></div><div class="num">${i+1}</div>`;
-    s.addEventListener('mouseenter',()=>{stop();set(i)}); s.addEventListener('click',()=>pick(i));
+    s.addEventListener('mouseenter',()=>{stop();set(i)}); s.addEventListener('click',()=>{stop();set(i)});
     host.appendChild(s); spots.push(s);
     const b=document.createElement('button'); b.textContent=i+1; b.style.setProperty('--c',d.c); b.title=d.t;
-    b.addEventListener('click',()=>pick(i)); b.addEventListener('mouseenter',()=>{stop();set(i)});
+    b.addEventListener('click',()=>{stop();set(i)}); b.addEventListener('mouseenter',()=>{stop();set(i)});
     idx.appendChild(b); btns.push(b);
   });
   function set(i){
     if(cur>=0){spots[cur].classList.remove('on');btns[cur].classList.remove('on')}
     cur=i; spots[i].classList.add('on'); btns[i].classList.add('on'); host.classList.add('focus');
     const d=list[i]; info.style.setProperty('--c',d.c);
-    info.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')} / ${list.length}</div><h3>${d.t}</h3><div class="sub">${d.s}</div><p>${d.p}</p><div class="talk">talks to · <b>${d.w}</b></div>`+
-      ((d.go||d.doc)?`<div class="acts">${d.go?`<button class="go">${HOVER?'Click to open its slide →':'Open its slide →'}</button>`:''}${d.doc?`<a class="doc" href="${d.doc}" target="_blank" rel="noopener">Official docs ↗</a>`:''}</div>`:'');
-    const g=info.querySelector('.go'); if(g) g.onclick=()=>jump(i);
+    info.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')} / ${list.length}</div><h3>${d.t}</h3><div class="sub">${d.s}</div><p>${d.p}</p><div class="talk">talks to · <b>${d.w}</b></div>`;
   }
-  let armed=-1;
-  function pick(i){ stop(); const d=list[i];
-    if(d.go && (HOVER || armed===i)) { set(i); jump(i); return; }
-    armed=i; set(i); }
-  function jump(i){ const d=list[i]; if(!d.go) return; stop(); openFromMap(host.closest('.slide').id,d.go); }
   function stop(){touched=true;clearInterval(timer);timer=null}
   return {enter(){ if(cur<0) set(0); if(!touched && !timer) timer=setInterval(()=>set((cur+1)%list.length),3200); },
           leave(){clearInterval(timer);timer=null},
@@ -913,12 +895,8 @@ addEventListener('resize',fit); fit();
 const prog=document.getElementById('prog'), menuList=document.getElementById('menuList');
 slides.forEach((s,k)=>{const b=document.createElement('b'); b.title=s.dataset.title; b.onclick=()=>go(k); prog.appendChild(b);
   const li=document.createElement('li'); li.innerHTML=`<b>${String(k+1).padStart(2,'0')}</b><div>${s.dataset.title}<small>${s.dataset.chap}</small></div>`; li.onclick=()=>{go(k);menu(false)}; menuList.appendChild(li);});
-let backTo=null; const backBtn=document.getElementById('backMap');
-function openFromMap(fromId,toId){ const t=slides.findIndex(x=>x.id===toId); if(t<0) return; backTo={from:slides.findIndex(x=>x.id===fromId),to:t}; go(t); }
-backBtn.onclick=()=>{ if(backTo){ const b=backTo.from; backTo=null; go(b); } };
 function go(n,instant){
   n=Math.max(0,Math.min(slides.length-1,n)); const old=slides[i];
-  if(backTo && n!==backTo.to) backTo=null;
   if(maps[old.id]) maps[old.id].leave();
   slides.forEach((s,k)=>{s.classList.toggle('active',k===n); s.classList.toggle('before',k<n)});
   i=n; const s=slides[i];
@@ -928,7 +906,6 @@ function go(n,instant){
   [...prog.children].forEach((b,k)=>{b.className=k<i?'done':(k===i?'cur':'')});
   [...menuList.children].forEach((l,k)=>l.classList.toggle('cur',k===i));
   if(maps[s.id]) maps[s.id].enter();
-  backBtn.hidden=!(backTo && backTo.to===i); if(!backBtn.hidden) backBtn.textContent='← Back to the '+(slides[backTo.from].id==='s-back'?'underside':'board map');
   s.querySelectorAll('.bar').forEach(b=>{b.style.transform='scaleX(0)'; requestAnimationFrame(()=>requestAnimationFrame(()=>b.style.transform='scaleX(1)'))});
   try{history.replaceState(null,'','#slide-'+(i+1))}catch(e){}
 }
