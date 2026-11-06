@@ -4,6 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inside Your Raspberry Pi 5</title>
+<meta name="description" content="Every chip, connector and pathway on a real Raspberry Pi 5: an interactive 24-slide deck with animated data paths.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inside Your Raspberry Pi 5">
+<meta property="og:title" content="Inside Your Raspberry Pi 5">
+<meta property="og:description" content="Every chip, connector and pathway on a real Raspberry Pi 5: an interactive 24-slide deck with animated data paths.">
+<meta property="og:url" content="https://ironman1421.github.io/raspberry-pi-5-deck/">
+<meta property="og:image" content="https://ironman1421.github.io/raspberry-pi-5-deck/img/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Title slide: Inside your Pi 5, beside a photo of a Raspberry Pi 5 board">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inside Your Raspberry Pi 5">
+<meta name="twitter:description" content="Every chip, connector and pathway on a real Raspberry Pi 5: an interactive 24-slide deck with animated data paths.">
+<meta name="twitter:image" content="https://ironman1421.github.io/raspberry-pi-5-deck/img/preview.jpg">
+<meta name="theme-color" content="#0a0f0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0f0d'/%3E%3Cg stroke='%233fd2e6' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M22 8v8M32 8v8M42 8v8M22 48v8M32 48v8M42 48v8M8 22h8M8 32h8M8 42h8M48 22h8M48 32h8M48 42h8'/%3E%3C/g%3E%3Crect x='16' y='16' width='32' height='32' rx='6' fill='%23ff4f7e'/%3E%3Ctext x='32' y='40' font-family='Arial' font-weight='700' font-size='20' text-anchor='middle' fill='%230a0f0d'%3E5%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
@@ -236,6 +253,7 @@ table.cheat tr:hover td{background:#121b17}
 .foot{position:absolute;left:120px;right:120px;bottom:104px;font-family:var(--mono);font-size:22px;color:#5d7067}
 body.still *,body.still *::before,body.still *::after{animation:none!important;transition:none!important}
 body.still .rise,body.still .pop{opacity:1!important;transform:none!important}body.still .fc{stroke-dashoffset:0!important}
+body.og #s-cover .start,body.og #hint{display:none!important}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -644,7 +662,8 @@ body.still .rise,body.still .pop{opacity:1!important;transform:none!important}bo
 
 <script>
 (function(){
-if(/still/.test(location.search))document.body.classList.add('still');
+if(/still|og/.test(location.search))document.body.classList.add('still');
+if(/og/.test(location.search))document.body.classList.add('og');
 const TOP={src:'img/board-top.jpg',W:1600,H:1018}, BACK={src:'img/board-back.jpg',W:1600,H:1200};
 const C={soc:'#ff4f7e',data:'#3fd2e6',pwr:'#f5ae3d',exp:'#a6e35a',mem:'#a78bfa'};
 
