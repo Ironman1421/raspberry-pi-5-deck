@@ -168,6 +168,10 @@ kbd{font-family:var(--mono);font-size:22px;border:1px solid var(--line2);border-
 .sheet .run{display:flex;justify-content:space-between;gap:20px;white-space:nowrap;font:400 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#555;border-bottom:1.5px solid #141414;padding-bottom:8px;margin-right:46px}
 .sheet h1{font-family:'Source Serif 4',Georgia,serif;font-size:34px;font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:22px 0 4px;color:#000}
 .sheet h2{font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;margin:26px 0 6px;color:#000;letter-spacing:0}
+.sheet h2.lv2{font-size:32px;margin:22px 0 6px;letter-spacing:-.01em}
+.sheet h3{font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;margin:24px 0 6px;color:#000}
+.sheet h4{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:600;font-style:italic;margin:18px 0 4px;color:#000}
+.sheet sup{font-size:.7em}.sheet ol{margin:6px 0 10px 26px}.sheet li pre{margin:8px 0}
 .sheet h2 .no{font-family:var(--mono);font-size:16px;color:#666;margin-right:10px;font-weight:400}
 .sheet p{margin:8px 0}
 .sheet .cap{font-style:italic;font-size:18px;color:#333;margin:16px 0 6px}
@@ -248,7 +252,7 @@ table.cheat td .dot{display:inline-block;margin-right:12px;vertical-align:middle
 table.cheat tr:hover td{background:#121b17}
 /* gpio */
 .hdr{margin-top:40px;padding:34px 40px;display:inline-block;background:#0d3b22;border-radius:18px;border:1px solid #1d5a38;box-shadow:inset 0 0 60px rgba(0,0,0,.35)}
-.pins{display:grid;grid-template-columns:repeat(20,72px);grid-template-rows:72px 72px;gap:10px}
+.pins{display:grid;grid-template-columns:repeat(20,70px);grid-template-rows:70px 70px;gap:9px}
 .pin{border-radius:10px;background:#111;display:grid;place-items:center;cursor:pointer;position:relative;transition:transform .2s,opacity .3s;border:2px solid #000}
 .pin::before{content:"";width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff7d6,#d8b45a 45%,#8a6a22);box-shadow:0 0 0 5px var(--c)}
 .pin span{position:absolute;font:600 15px var(--mono);color:var(--ink2);}
@@ -338,7 +342,7 @@ body.og #s-cover .start,body.og #hint{display:none!important}
     <div class="rise" style="--d:3">
       <div class="card info" id="infoTop"></div>
       <div class="idx" id="idxTop"></div>
-      <div class="legend"><span><i class="dot" style="--c:var(--rasp)"></i>compute</span><span><i class="dot" style="--c:var(--cyan)"></i>data</span><span><i class="dot" style="--c:var(--amber)"></i>power</span><span><i class="dot" style="--c:var(--lime)"></i>expansion</span><span style="color:var(--ink2)">· click an HDMI port for its manual page</span></div>
+      <div class="legend"><span><i class="dot" style="--c:var(--rasp)"></i>compute</span><span><i class="dot" style="--c:var(--cyan)"></i>data</span><span><i class="dot" style="--c:var(--amber)"></i>power</span><span><i class="dot" style="--c:var(--lime)"></i>expansion</span><span style="color:var(--ink2)">· click a part to read its manual page</span></div>
     </div>
   </div>
 </section>
@@ -655,7 +659,7 @@ body.og #s-cover .start,body.og #hint{display:none!important}
     <div class="rise" style="--d:3">
       <div class="card info" id="infoBack"></div>
       <div class="idx" id="idxBack" style="grid-template-columns:repeat(6,1fr)"></div>
-      <p class="lede" style="font-size:24px;margin-top:20px">Mirrored compared with the top: the USB and Ethernet end is on the left here.</p>
+      <p class="lede" style="font-size:24px;margin-top:20px">Mirrored compared with the top: the USB and Ethernet end is on the left here. Click a part to read its manual page.</p>
     </div>
   </div>
 </section>
@@ -735,6 +739,353 @@ body.og #s-cover .start,body.og #hint{display:none!important}
 <p>Raspberry Pi 5 and later, Raspberry Pi Compute Module 5 and later, and Raspberry Pi 500 and later, also work at two output pixels per clock cycle. These models have special handling for odd timings and can handle these modes directly.</p>
 <div class="src">Excerpts from the Raspberry Pi Documentation (raspberrypi.com/documentation), “Audio and visual output” and “Video options”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Trimmed to the parts relevant to Raspberry Pi 5; rows for other models and some sections omitted.</div>
 </template>
+<template id="man-soc">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Processors</span></div>
+<h2 class="lv2">BCM2712</h2>
+<p>Broadcom BCM2712 is the 16nm application processor used in Raspberry Pi 5, 500, 500+, and Compute Module 5. It is the successor to the BCM2711 device used in Raspberry Pi 4, and shares many common architectural features with other devices in the BCM27xx family, used on earlier Raspberry Pi products.</p>
+<p>Built around a quad-core Arm Cortex-A76 CPU cluster, clocked at up to 2.4 GHz, with 512 kB per-core L2 caches and a 2 MB shared L3 cache, it integrates an improved 12-core VideoCore VII GPU; a hardware video scaler and HDMI controller capable of driving dual 4Kp60 displays; and a Raspberry Pi-developed HEVC decoder and Image Signal Processor. A 32-bit LPDDR4X memory interface provides up to 17 GB/s of memory bandwidth, while ×1 and ×4 PCI Express interfaces support high-bandwidth external peripherals; on Raspberry Pi 5 the latter is used to connect to the Raspberry Pi RP1 south bridge, which provides the bulk of the external-facing I/O functionality on the platform.</p>
+<p>Headline features include:</p>
+<ul><li>Quad-core Arm Cortex-A76 @ 2.4 GHz<ul><li>Armv8-A ISA</li><li>64 kByte I and D caches</li><li>512 kB L2 per core, 2 MB shared L3</li></ul></li><li>New Raspberry Pi-developed ISP<ul><li>1 gigapixel/sec</li></ul></li><li>Improved HVS and display pipeline<ul><li>Dual 4Kp60 support</li></ul></li><li>VideoCore V3D VII<ul><li>~2-2.5× faster (more hardware, 960 MHz versus 500 MHz on Raspberry Pi 4)</li><li>OpenGL ES 3.1, Vulkan 1.3</li></ul></li><li>4Kp60 HEVC hardware decode<ul><li>Other CODECs run in software</li><li>H264 1080p24 decode ~10–20% of CPU</li><li>H264 1080p60 decode ~50–60% of CPU</li><li>H264 1080p30 encode (from ISP) ~30–40% CPU</li></ul></li></ul>
+<p>In aggregate, the new features present in BCM2712 deliver a performance uplift of 2-3× over Raspberry Pi 4 for common CPU or I/O-intensive use cases.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “BCM2712”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-rp1">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › I/O controllers</span></div>
+<h2 class="lv2">RP1 overview</h2>
+<p>RP1 measures approximately 12 x 12 mm in a BGA package with 0.65 mm pin spacing.</p>
+<p>It connects to the main CPU (BCM2712) on a Raspberry Pi 5 and Compute Module 5 over a PCIe 2.0 x4 link, and handles most external I/O.</p>
+<p>RP1 complements the main processor by managing peripherals and offloading I/O tasks from the main CPU. This continues Raspberry Pi's traditional two-chip architecture where the CPU manages core processing and a companion chip (in this case, RP1) manages peripherals. For more information, see interfaces.</p>
+<p>RP1 also integrates several internal system components to support high-performance, low-latency I/O operation. For more information, see features.</p>
+<p>RP1 includes dedicated multimedia and audio hardware to support display outputs, cameras, and basic audio functionality. For more information, see multimedia.</p><h2 class="lv2">Peripheral interfaces</h2>
+<p>RP1 provides the following peripheral interfaces:</p>
+<ul><li>4-lane PCIe 2.0 endpoint</li><li>Gigabit Ethernet MAC</li><li>Two USB host controllers (providing more than twice the usable USB bandwidth compared to Raspberry Pi 4), each with:<ul><li>One USB 3.0 port</li><li>One USB 2.0 port</li></ul></li><li>Two SDIO/eMMC interfaces (not used on Raspberry Pi 5)</li><li>Two 4-lane MIPI transceivers supporting DSI and CSI-2 for display and camera interfaces</li><li>Low-speed peripherals, including:<ul><li>SPI</li><li>UART</li><li>I2C</li><li>PWM</li><li>GPIO</li><li>I2S</li></ul></li></ul>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “RP1”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-pmic">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Power supply</h2>
+<p>The power supply requirements differ by Raspberry Pi model. All models require a 5.1V supply, but the current required generally increases according to model. All models up to the Raspberry Pi 3 require a micro USB power connector, while Raspberry Pi 4, Raspberry Pi 400, and Raspberry Pi 5 use a USB-C connector.</p>
+<p>The current consumed by each Raspberry Pi depends on the peripherals connected.</p><h4 class="lv4">Decrease Raspberry Pi 5 wattage when turned off</h4>
+<p>By default, the Raspberry Pi 5 consumes around 1 W to 1.4 W of power when turned off. This can be decreased by manually editing the EEPROM configuration with <code>sudo rpi-eeprom-config -e</code>. Modify the settings to add:</p>
+<pre>POWER_OFF_ON_HALT=1</pre>
+<p>This should drop the power consumption when powered down to around 0.01 W.</p><h3 class="lv3">Power supplies and Raspberry Pi OS</h3>
+<p>The bootloader passes information about the power supply through device-tree <code>/proc/device-tree/chosen/power</code>. Users will typically not read this directly.</p>
+<ul><li><code>max_current</code>: The max current in mA</li><li><code>uspd_power_data_objects</code>: A dump of the PDOs – debug for advanced users</li><li><code>usb_max_current_enable</code>: Whether the current limiter was set to high or low</li><li><code>usb_over_current_detected</code>: Whether any USB over current occurred during boot before transferring control to the OS</li><li><code>reset_event</code>: The PMIC reset reason, for example, watchdog, over- or under-voltage, over-temperature</li></ul>
+<p>The PMIC has built-in ADCs that, among other things, can measure the supply voltage <code>EXT5V_V</code>. Use the following command to view ADC measurements:</p>
+<pre>$ vcgencmd pmic_read_adc</pre>
+<p>You can't see USB current or anything else connected directly to 5V, because this bypasses the PMIC. You should not expect this to add up to the wattage of the source power supply. However, it can be useful to monitor things like the core voltage.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Power supply”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-usbc">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h3 class="lv3">Recommended power supplies</h3>
+<p>For Raspberry Pi 1, Raspberry Pi 2, and Raspberry Pi 3, we recommend the 2.5A micro USB supply. For Raspberry Pi 4 and Raspberry Pi 400, we recommend the 3A USB-C Supply for Raspberry Pi 4. For Raspberry Pi 5, we recommend the 27 W USB-C Power Supply.</p>
+<div class="note"><b>NOTE</b>No Raspberry Pi models support USB-PPS.</div>
+<div class="note"><b>NOTE</b>If you use a third-party USB-PD multi-port power supply, plugging an additional device into the supply when your Raspberry Pi is connected causes a renegotiation between the supply and the Raspberry Pi. If the Raspberry Pi is powered, this happens seamlessly. If the Raspberry Pi is powered down, this renegotiation can cause the Raspberry Pi to boot.</div><h3 class="lv3">Power supply warnings</h3>
+<p>On all models of Raspberry Pi since the Raspberry Pi B+ (2014) except the Zero range, there is low-voltage detection circuitry that will detect if the supply voltage drops below 4.63 V (±5%). This will result in an entry being added to the kernel log.</p>
+<p>If you see warnings, switch to a higher quality power supply and cable. Low quality power supplies can corrupt storage or cause unpredictable behaviour within the Raspberry Pi.</p>
+<p>Voltages can drop for a variety of reasons. You might have plugged in too many high-demand USB devices. The power supply could be inadequate. Or the power supply cable could use wires that are too thin.</p>
+<p>**** Raspberry Pi devices are frequently used as data storage and monitoring devices, often in places where sudden power-downs can occur. As with any computing device, power dropouts can cause storage corruption.</p>
+<p>This white paper provides some options on how to prevent data corruption under these and other circumstances by selecting appropriate file systems and setups to ensure data integrity. ****</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Power supply”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-wifi">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Configuration</span></div>
+<h2 class="lv2">Wireless connection</h2>
+<p>This section covers how to:</p>
+<ul><li>Configure a Wi-Fi connection, specifically, how to:<ul><li>wlan country, which is a prerequisite for connecting to a wireless network, which you can do from the desktop and using the interactive <code>raspi-config</code> TUI.</li><li>find networks to connect to, which you can do from the desktop and from the command line.</li><li>connect to wireless, which you can do from the desktop and from the command line.</li><li>wlan power, which is an advanced option set through the interactive <code>raspi-config</code> TUI.</li></ul></li><li>bt, such as a mouse or keyboard, which you can do from the desktop.</li></ul>
+<p>The Wi-Fi connection requires either a Raspberry Pi with built-in wireless connectivity or a wireless USB stick plugged into it.</p><h3 class="lv3">Enable wireless networking (set WLAN country)</h3>
+<p>On Raspberry Pi devices equipped with dual-band wireless, networking is automatically disabled as a safety measure until a Wireless LAN (WLAN) country is set. This applies from Raspberry Pi 3B+ onwards, Compute Module 4 onwards, and all keyboard computers (Raspberry Pi 400, 500, and 500+).</p>
+<p>Setting the WLAN country specifies where you use your Raspberry Pi. This allows your Raspberry Pi to choose the correct frequency bands for 5 GHz networking. When you've specified a WLAN country, you can use your Raspberry Pi device's built-in wireless networking module. You only need to set the WLAN country once unless you want to change it.</p>
+<div class="note"><b>IMPORTANT</b>Selecting the correct Wi-Fi regulatory domain is critical because it determines available channels, transmit power, and overall network performance; incorrect settings can cause legal issues, increased interference, reduced capacity, and degraded connectivity.</div>
+<p>Typically, WLAN country is set when you install an OS onto your boot media using Imager, but you can also set it up or change it later through the desktop GUI or from the Terminal (through the <code>raspi-config</code> TUI and using <code>nmcli</code> commands).</p>
+<h4 class="tab">Desktop</h4>
+<ol><li>Select the Raspberry Pi icon in the top-left corner.</li><li>Select <b>Preferences &gt; Control Centre</b>.</li><li>Open the <b>Localisation</b> tab.</li><li>Select <b>Set WLAN Country</b> at the bottom of the list.</li><li>Choose your country from the <b>Country</b> dropdown menu.</li><li>Select <b>OK</b> and then <b>Close</b>.</li></ol>
+<h4 class="tab">raspi-config and nmcli</h4>
+<ol><li>Open the Terminal and run <code>sudo raspi-config</code>.</li><li>Use the keyboard to navigate to and select <code>5 Localisation options &gt; L4 WLAN Country</code>.</li><li>Navigate through the list of countries and select the country that applies to you.</li><li>Select <code>&lt;OK&gt;</code>. This opens a confirmation window. Select <code>&lt;OK&gt;</code> again.</li><li>In a new Terminal, run the following command to check that the Wi-Fi radio module on your Raspberry Pi is enabled:<pre>$ nmcli radio wifi</pre><br></li><li>If this command returns <code>enabled</code>, you're ready to configure your Wi-Fi connection. If the command returns <code>disabled</code>, enable Wi-Fi with the following command:<pre>$ nmcli radio wifi on</pre></li></ol>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Wireless connection”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-gpio">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">40-pin GPIO header</h2>
+<p>All current classic single-board computers (SBCs), Zero models, and keyboard computers include a 40-pin general-purpose input/output (GPIO) header, distributed across two rows of 20 pins, with standard 2.54 mm pin pitch. On some Zero models, the GPIO header doesn't come with pins attached. For more information about these variants, see Zero models.</p>
+<div class="note"><b>NOTE</b>Earlier models of classic Raspberry Pi SBCs that are no longer in production had a 26-pin GPIO header.</div>
+<p>The GPIO header is the primary hardware bridge between your Raspberry Pi's processor and external electronic components. Programs running on your Raspberry Pi use these pins to perform two core actions:</p>
+<ul><li><b>Receive input.</b> Read digital states from connected sensors, switches, and buttons.</li><li><b>Send output.</b> Transmit electrical signals to control external hardware like LEDs, motors, and displays.</li></ul><h3 class="lv3">Pin types</h3>
+<p>Each pin is mapped to a specific function categorised into four primary types, summarised in the following table.</p>
+<div class="cap">Pin types, quantity, and purpose</div>
+<table><tr><th>Pin type</th><th>Quantity</th><th>Labelling</th><th>Voltage</th><th>Primary purpose</th></tr><tr><td>Power</td><td>4</td><td><code>3V3</code> (2)<br><code>5V</code> (2)</td><td>3.3 V DC<br>5.0 V DC</td><td>Provide power to compatible, low-current peripherals</td></tr><tr><td>Ground</td><td>8</td><td><code>GND</code></td><td>0 V</td><td>Provide a ground connection (0 volts), used to complete electrical circuits across the header.</td></tr><tr><td>GPIO</td><td>26</td><td><code>GPXX</code>, where <code>XX</code> is a number from 2 to 27 (<code>GP2</code> to <code>GP27</code>)</td><td>3.3 V logic</td><td>General-purpose digital input and output pins, customisable through software; supports communication protocols (SPI, I2C, UART, PWM, and PCM).</td></tr><tr><td>ID EEPROM</td><td>2</td><td><code>GP0</code> and <code>GP1</code></td><td>3.3 V logic</td><td>Reserved for use with Hardware Attached on Top (HAT) boards.</td></tr></table>
+<div class="note"><b>NOTE</b>GPIO pins 0 and 1, sometimes named <code>GPIO 0 (ID_SD)</code> and <code>GPIO 1 (ID_SC)</code>, respectively, are reserved for special-purpose use. Physically, these pins correspond with pins 27 and 28 on a Raspberry Pi board.</div><h3 class="lv3">GPIO pin inputs, outputs, and communication protocols</h3>
+<p>GPIO pins can operate in two modes: inputs and outputs. Some GPIO pins can also control connected components using specific communication protocols, including <b>SPI</b>, <b>I2C</b>, <b>UART</b>, <b>PWM</b>, and <b>PCM</b>.</p>
+<h4 class="lv4">Inputs</h4>
+<p>A GPIO pin designated as an input is read as high when connected to 3.3 V, and low when connected to 0 V. Internal pull-up or pull-down resistors help establish a defined input state when no external signal is being applied.</p>
+<div class="note"><b>WARNING</b>Raspberry Pi GPIO pins operate at 3.3 V and aren't 5 V tolerant. Only the 5 V power pins are designed to supply 5 V power. Never apply 5 V directly to a GPIO pin because this can cause permanent damage to your Raspberry Pi's SoC.</div>
+<p><code>GP2</code> (SDA) and <code>GP3</code> (SCL) have fixed 1.8 kΩ resistors. You can control pull-up or pull-down configuration for other pins through software.</p>
+<h4 class="lv4">Outputs</h4>
+<p>A GPIO pin designated as an output can be set to high (3.3 V) or low (0 V) to control connected electronic components.</p>
+<p>An individual GPIO pin can supply up to 16 mA to an attached device, and all GPIO pins combined can supply a maximum total current of 50 mA.</p>
+<div class="note"><b>WARNING</b>While connecting simple components to GPIO pins is generally safe when wired correctly, take care when connecting electronic components to your Raspberry Pi. For LEDs, use a suitable current-limiting resistor. For motors, use a suitable motor driver, such as an H-bridge or motor controller board; never connect motors directly to GPIO pins.</div>
+<h4 class="lv4">Communication protocols (alternative functions)</h4>
+<p>Some GPIO pins can control connected components using specific communication protocols, including the following:</p>
+<ul><li><b>SPI (Serial Peripheral Interface)</b>, used to communicate with external SPI devices, such as sensors, displays, and other peripherals.</li><li><b>UART (Universal Asynchronous Receiver/Transmitter)</b>, used to send and receive serial data with devices such as microcontrollers.</li><li><b>PWM (Pulse Width Modulation)</b>, used to control the amount of power delivered to devices such as motors and LEDs.</li><li><b>PCM (Pulse Code Modulation)</b>, used for digital audio input and output.</li><li><b>I2C (Inter-Integrated Circuit)</b>, used to communicate with external I2C devices, such as sensors, displays, and other peripherals.</li></ul>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “40-pin GPIO header”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-usb">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Universal Serial Bus (USB)</h2>
+<p>In general, every device supported by Linux can be used with a Raspberry Pi, although there are some limitations for models prior to Raspberry Pi 4.</p><h3 class="lv3">Maximum power output</h3>
+<p>As with all computers, the USB ports on the Raspberry Pi supply a limited amount of power. Often problems with USB devices are caused by power issues. To rule out insufficient power as the cause of the problem, connect your USB devices to the Raspberry Pi using a powered hub.</p>
+<table><tr><th>Model</th><th>Max power output of USB ports</th></tr><tr><td>Raspberry Pi Zero, 1</td><td>500mA per port<sup>1</sup></td></tr><tr><td>Raspberry Pi 2, 3, 4</td><td>1200mA total across all ports</td></tr><tr><td>Raspberry Pi 5</td><td>600mA if using a 3A supply, 1600mA if using a 5A supply</td></tr></table>
+<ol><li>For the original Raspberry Pi 1 Model B the limit is 100mA per port.</li></ol><h3 class="lv3">Raspberry Pi 5</h3>
+<p>The Raspberry Pi 5 requires a good quality USB-C power supply capable of delivering 3A at +5V (15W) in order to boot. However, using such a supply will restrict current draw to peripherals. If you are using a power supply that cannot provide 5A at +5V on first boot you will be warned by the operating system that the current draw to peripherals will be restricted to 600mA.</p>
+<p>For users who wish to drive high-power peripherals like hard drives and SSDs, while retaining margin for peak workloads, a USB-PD enabled power supply capable of supplying a 5A at +5V (25W) should be used. If the Raspberry Pi 5 firmware detects such a supply, it increases the USB current limit for peripherals to 1.6A, providing 5 W of extra power for downstream USB devices, and 5 W of extra onboard power budget.</p>
+<div class="note"><b>NOTE</b>The power budget is shared between the USB ports and the fan header.</div><h3 class="lv3">Known USB issues</h3>
+<h4 class="lv4">Interoperability with USB 3.0 hubs</h4>
+<p>There is an issue with USB 3.0 hubs in conjunction with the use of full- or low-speed devices, including most mice and keyboards. A bug in most USB 3.0 hub hardware means that the models prior to Raspberry Pi 4 cannot talk to full or low speed devices connected to a USB 3.0 hub.</p>
+<p>USB 2.0 high speed devices, including USB 2.0 hubs, operate correctly when connected through a USB 3.0 hub.</p>
+<p>Avoid connecting low or full speed devices into a USB 3.0 hub. As a workaround, plug a USB 2.0 hub into the downstream port of the USB 3.0 hub and connect the low-speed device, or use a USB 2.0 hub between the Raspberry Pi and the USB 3.0 hub, then plug low-speed devices into the USB 2.0 hub.</p>
+<h4 class="lv4">USB 1.1 webcams</h4>
+<p>Old webcams might be full-speed devices. Because these devices transfer a lot of data and incur additional software overhead, reliable operation is not guaranteed. As a workaround, try to use the camera at a lower resolution.</p>
+<h4 class="lv4">Esoteric USB sound cards</h4>
+<p>Expensive audiophile sound cards typically use large amounts of USB bandwidth. Reliable operation with 96 kHz/192 kHz DACs is not guaranteed. As a workaround, forcing the output stream to be CD quality (44.1 kHz/48 kHz 16-bit) will reduce the stream bandwidth to reliable levels.</p>
+<h4 class="lv4">Single TT USB hubs</h4>
+<p>USB 2.0 and 3.0 hubs have a mechanism for talking to full- or low-speed devices connected to their downstream ports called a transaction translator (TT). This device buffers high speed requests from the host and transmits them at full or low speed to the downstream device. Two configurations of hub are allowed by the USB specification: Single TT (one TT for all ports) and Multi TT (one TT per port). Because of a hardware limitation, if too many full- or low-speed devices are plugged into a single TT hub, the devices might behave unreliably. It is recommended to use a Multi TT hub to interface with multiple full and low speed devices. As a workaround, spread full- and low-speed devices out between the Raspberry Pi device's own USB port and the single TT hub.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Universal Serial Bus (USB)”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-poe">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h3 class="lv3">Power over Ethernet (PoE) connector</h3>
+<div class="cap">Raspberry Pi 5 PoE header</div>
+<p>The Ethernet jack on Raspberry Pi 5 is PoE+ capable, supporting the IEEE 802.3at-2009 PoE standard.</p>
+<p>The Ethernet jack on Raspberry Pi 4B and 3B+ is PoE capable, supporting the IEEE 802.3af-2003 PoE standard.</p>
+<p>All Raspberry Pi models with a PoE-capable Ethernet jack require a HAT to draw power through the Ethernet port. For models that support PoE, we recommend the PoE HAT. For models that support PoE+, we recommend the PoE+ HAT.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Power over Ethernet (PoE) connector”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-uart">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Configuration</span></div>
+<h3 class="lv3">Configure UARTs</h3>
+<p>UART (Universal Asynchronous Receiver-Transmitter) is a hardware communication protocol used for serial communication. UARTs on Raspberry Pi devices allow you to communicate with peripheral devices and to access the Linux terminal through a serial console.</p><h4 class="lv5">UART types</h4>
+<p>Raspberry Pi supports two types of UART:</p>
+<ul><li><b>PL011.</b> A full-featured, 16550-compatible UART that provides hardware-timed serial communication.</li><li><b>Mini UART.</b> A lightweight UART that provides a simple and efficient serial interface.</li></ul>
+<p>Unlike PL011, the mini UART has no break detection, no framing errors detection, no parity bit, and no receive timeout interrupt. The mini UART also has smaller FIFOs. Combined with the lack of flow control, this makes the mini UART more prone to losing characters at higher baud rates. It's also generally less capable than PL011, mainly due to its baud rate link to the VPU clock speed. Further information about the mini UART can be found in the SoC peripherals document.</p>
+<p>Neither the mini UART nor the BCM2835 implementation of PL011 has DCD, DSR, DTR, or RI signals.</p>
+<div class="note"><b>WARNING</b>All UARTs operate at 3.3 V; connecting to 5 V systems causes damage. For 5 V systems, use a level-shifter or a USB-to-3.3 V serial adaptor.</div>
+<p>The available UART interfaces vary by Raspberry Pi model. The following table summarises the default UART configurations across common Raspberry Pi devices.</p>
+<div class="cap">UART by Raspberry Pi model</div>
+<table><tr><th>Model</th><th>UARTs</th></tr><tr><td>Raspberry Pi Zero, 1, 2, and 3; Compute Module 1, 3, and 3+</td><td><code>UART0</code>: PL011<br><code>UART1</code>: mini UART</td></tr><tr><td>Raspberry Pi 4, 400, and Compute Module 4 and 4S</td><td><code>UART0</code>: PL011<br><code>UART1</code>: mini UART<br><code>UART2</code> through to <code>UART5</code>: PL011 (disabled by default)</td></tr><tr><td>Raspberry Pi 5, 500, 500+, and Compute Module 5</td><td><code>UART0</code> through to <code>UART4</code> and <code>UART10</code> (also called the debug UART): PL011 (disabled by default)<br>No mini UART</td></tr></table>
+<p>On Compute Modules, all UARTs are disabled by default and can be enabled through a Device Tree overlay, for example:</p>
+<pre>$ dtoverlay=uart1,txd1_pin=32,rxd1_pin=33</pre><h4 class="lv5">Primary and secondary UARTs</h4>
+<p>The <b>primary UART</b> is the main serial interface that a Raspberry Pi exposes. This is the UART that you typically use when you connect external devices and for a Linux serial console.</p>
+<p>For all Raspberry Pi devices other than Raspberry Pi 5, the primary UART is routed to specific GPIO pins:</p>
+<ul><li><b>GPIO 14</b> (transmit) is pin 8 on the GPIO header.</li><li><b>GPIO 15</b> (receive) is pin 10 on the GPIO header.</li></ul>
+<p>On Raspberry Pi 5, by default the primary UART is exposed through the dedicated debug header instead (<code>UART10</code>). This dedicated debug header is a three-pin header labelled <code>UART</code>. However, the following <code>config.txt</code> settings can change the primary UART:</p>
+<p>- If enable_rp1_uart is set to 1, Raspberry Pi 5 routes later firmware debug messages, including all file accesses, through the UART on GPIO 14 and 15. - If there is no UART cable plugged into the dedicated debug header and enable_uart is set to 1, Raspberry Pi 5 automatically routes kernel logging debug output to the UART on GPIO 14 and 15.</p>
+<p>The <b>secondary UART</b> is another serial interface available internally on the system; it isn't typically exposed through the GPIO header pins by default. On models with built-in wireless, this UART is commonly connected internally to the Bluetooth controller. This allows the system to communicate with Bluetooth hardware without using the external GPIO pins.</p>
+<div class="cap">Primary and secondary UARTs</div>
+<table><tr><th>Model</th><th>Primary (Linux console)</th><th>Secondary (Bluetooth on Raspberry Pi devices with wireless)</th></tr><tr><td>Raspberry Pi Zero</td><td><code>UART0</code></td><td><code>UART1</code></td></tr><tr><td>Raspberry Pi Zero W and Zero 2 W</td><td><code>UART1</code></td><td><code>UART0</code></td></tr><tr><td>Raspberry Pi 1 and 2</td><td><code>UART0</code></td><td><code>UART1</code></td></tr><tr><td>Raspberry Pi 3 and 4</td><td><code>UART1</code></td><td><code>UART0</code></td></tr><tr><td>Raspberry Pi 5</td><td><code>UART10</code></td><td>Dedicated UART</td></tr><tr><td>Compute Module 1, 3, 3+, and 4</td><td><code>UART0</code></td><td><code>UART1</code></td></tr></table>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Configure UARTs”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-bat">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Real Time Clock (RTC)</h2>
+<p>The Raspberry Pi 5 includes an RTC module. This can be battery powered through the J5 (BAT) connector on the board. When the components are facing up and the logo is in the correct orientation, the J5 connector is located towards the near left corner of the board and to the right of the USB-C power connector.</p>
+<div class="cap">The J5 battery connector</div>
+<p>You can set a wake alarm, which switches the board to a very low-power state (approximately 3 mA). When the alarm time is reached, the board powers back on. This can be useful for periodic jobs like time-lapse imagery.</p>
+<p>To support the low-power mode for wake alarms:</p>
+<ol><li>Edit the bootloader configuration.<pre>$ sudo rpi-eeprom-config --edit</pre></li><li>Add the following two lines.<pre>POWER_OFF_ON_HALT=1
+WAKE_ON_GPIO=0</pre></li></ol>
+<p>You can test the functionality with:</p>
+<pre>$ echo +600 | sudo tee /sys/class/rtc/rtc0/wakealarm
+$ sudo halt</pre>
+<p>This command halts the board into a very low-power state, then wakes and restarts after 10 minutes.</p>
+<p>The RTC also provides the time on boot, for example, in <code>dmesg</code>, for use cases that lack access to NTP:</p>
+<pre>[    1.295799] rpi-rtc soc:rpi_rtc: setting system clock to 2023-08-16T15:58:50 UTC (1692201530)</pre>
+<div class="note"><b>NOTE</b>The RTC is still usable even when there's no backup battery attached to the J5 connector.</div>
+<h3 class="lv3">Add a backup battery</h3>
+<div class="cap">Lithium-manganese rechargeable RTC battery</div>
+<p>The official battery part is a rechargeable lithium manganese coin cell, with a pre-fitted two-pin JST-SH plug and an adhesive mounting pad. This is suitable for powering the RTC when the main power supply for the board is disconnected. Since the current draw when powered down measures in single-digit µA, the retention time measures in months.</p>
+<div class="note"><b>NOTE</b>We don't recommend using a primary (non-rechargeable) lithium cell for the RTC. The RTC backup current consumption is higher than most dedicated RTC modules and results in a short service life.</div>
+<div class="note"><b>WARNING</b>Don't use a Lithium Ion cell for the RTC.</div>
+<h3 class="lv3">Enable battery charging</h3>
+<p>The RTC is equipped with a constant-current (3 mA) constant-voltage charger.</p>
+<p>Charging of the battery is disabled by default. There are <code>sysfs</code> files that show the charging voltage and limits:</p>
+<pre>$ grep . /sys/class/rtc/rtc0/charging_voltage*
+
+/sys/class/rtc/rtc0/charging_voltage:0
+/sys/class/rtc/rtc0/charging_voltage_max:4400000
+/sys/class/rtc/rtc0/charging_voltage_min:1300000</pre>
+<p>To charge the battery at a set voltage, add <code>rtc_bbat_vchg</code> to <code>/boot/firmware/config.txt</code>:</p>
+<pre>dtparam=rtc_bbat_vchg=3000000</pre>
+<p>Reboot with <code>sudo reboot</code> to use the new voltage setting. Check the <code>sysfs</code> files to ensure that the charging voltage was correctly set.</p>
+<h3 class="lv3">Disable battery charging</h3>
+<p>To stop charging, remove any lines that contain <code>rtc_bbat_vchg</code> from <code>config.txt</code>.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Real Time Clock (RTC)”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-cam">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Accessories › Camera</span></div>
+<h2 class="lv2">Install a Raspberry Pi camera</h2>
+<p>The process for installing a Raspberry Pi camera is broadly the same for all combinations of camera and board. There are some differences in the connectors; these differences are noted in the following steps.</p><h3 class="lv3">Step 1. Prepare</h3>
+<div class="note"><b>WARNING</b>Cameras are sensitive to static. Earth yourself prior to handling the PCB. If you don't have an earthing strap, you can touch a sink tap or similar to earth yourself.</div>
+<p>To complete this procedure, you need the following items:</p>
+<ul><li>A Raspberry Pi board with a camera connector.</li><li>A Raspberry Pi camera.<br>Some cameras might come with a small piece of translucent blue plastic film covering the lens. This is only present to protect the lens during shipping. To remove it, gently peel it off.</li><li>The appropriate cable to connect the camera and board.<ul><li>All Raspberry Pi cameras use the standard, 15-pin connector.</li><li>Raspberry Pi flagship models up to and including Raspberry Pi 4 use the standard, 15-pin connector. For these boards, use the Standard-Standard camera cable provided with your camera.</li><li>Raspberry Pi 5, all Raspberry Pi Zero models, and Compute Module IO boards use the mini, 22-pin connector. For these boards, use the Standard-Mini camera cable.</li><li>Some Compute Module Development Kits come with a Compute Module Camera and Display Adaptor (CMCDA) board, which converts the mini, 22-pin connector on the IO board into a standard, 15-pin connector.</li></ul></li></ul><h3 class="lv3">Step 2. Connect the cable to your Raspberry Pi</h3>
+<div class="note"><b>NOTE</b>If you intend to use the Active Cooler with Raspberry Pi 5, consider connecting the cable to the camera connector on your Raspberry Pi device before installing the Active Cooler. With the Active Cooler in place, accessing the camera connectors can be awkward.</div>
+<ol><li>Shut down your Raspberry Pi and disconnect it from power.</li><li>Locate the camera connector on your Raspberry Pi board.<br>The following descriptions assume that you're holding your Raspberry Pi board with the chip and connectors facing up and the Raspberry Pi logo and board name in the correct orientation. For Raspberry Pi Zero boards without the logo on the top side, orient the board with the GPIO header along the edge furthest away from you.<br><ul><li>On Raspberry Pi Zero devices, the camera connector is on the short edge to the right, opposite the SD card slot.</li><li>On Raspberry Pi flagship models prior to Raspberry Pi 4, the camera connector is by the edge closest to you between the HDMI connector and the audio jack. It's labelled CAMERA.</li><li>On Raspberry Pi 4, the camera connector is by the edge closest to you between the micro HDMI connector and the audio jack. It's labelled CAMERA.</li><li>On Raspberry Pi 5, the two camera and display connectors are by the edge closest to you between the micro HDMI connector and the Ethernet port. They're labelled CAM/DISP0 and CAM/DISP1. You can use either of these connectors for your camera.</li><li>On Raspberry Pi Compute Module 1/3/3+ IO board, the two camera connectors are on the left edge (the edge closest to the logo on the IO board) at the end closest to you. They're labelled CAM0 and CAM1. You can use either of these connectors for your camera.</li><li>On Raspberry Pi Compute Module 4 IO board, the two camera connectors are by the far left corner. They're labelled CAM0 and CAM1. You can use either of these connectors for your camera.</li><li>On Raspberry Pi Compute Module 5 IO board, the two camera connectors are at the left end of the furthest edge. They're labelled CAM/DISP0 and CAM/DISP1. You can use either of these connectors for your camera.</li></ul></li><li>Open the flap on the connector.<ol><li>If there's a strip of film holding the connector flap closed, remove it.</li><li>Gently pull the flap out from the connector until you feel it stop. There's now some freedom of movement in the flap.</li><li>Tilt the flap slightly away from the connector opening.</li></ol></li><li>Insert the end of your camera cable with the metallic contacts facing away from the flap.<br>Ensure the camera cable is inserted firmly into the connector and is seated straight to correctly align all contacts. Take care not to bend the flexible cable at a sharp angle.</li><li>Close the connector flap by tilting it back towards the cable and pushing it down into the connector until you feel it click into place.<br>The flap holds the cable in place and ensures good contact between the connector pins and the metallic contacts of the cable.</li></ol>
+<p>You can remove a cable from the connector by reversing these steps.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Install a Raspberry Pi camera”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-fan">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h3 class="lv3">Fan cases</h3>
+<p>To ensure the best performance for your Raspberry Pi, use an active cooling solution such as a fan. Raspberry Pi firmware manages fan speeds for all official fans.</p><h4 class="lv4">Raspberry Pi 5 fans</h4>
+<p>For Raspberry Pi 5, use one of the official fan options:</p>
+<ul><li>Active Cooler</li><li>Case for Raspberry Pi 5</li></ul>
+<p>Both of the Raspberry Pi 5 fan options plug into the four-pin JST-SH PWM fan connector located in the upper right of the board between the 40-pin GPIO header and the USB 2.0 ports.</p>
+<p>The fan connector pulls from the same current limit as USB peripherals.</p>
+<p>The official case fan draws approximately 60 mA at 5 V (300 mW).</p>
+<p>Given the extra cooling performance of the Active Cooler, we recommend it for customers who want to overclock their Raspberry Pi 5.</p>
+<p>The fan is scheduled to turn on and off based on the temperature of the SoC. The default temperature mapping is as follows:</p>
+<ul><li>Less than 50°C: the fan doesn't spin at all (0% speed).</li><li>50°C: the fan turns on at a low speed (30% speed).</li><li>60°C: the fan speed increases to a medium speed (50% speed).</li><li>67.5°C: the fan speed increases to a high speed (70% speed).</li><li>75°C: the fan increases to full speed (100% speed).</li></ul>
+<p>Temperature decreases use the same mapping with a 5°C **hysteresis**; fan speed decreases when the temperature drops to 5°C below each of the above thresholds.</p>
+<div class="note"><b>NOTE</b>The temperature, hysteresis and speed figures given above can be adjusted by using the various <code>fan_tempN</code>, <code>fan_tempN_hyst</code> and <code>fan_tempN_speed</code> dtoverlay settings (where <code>N</code> is 0, 1, 2 or 3). See the overlays README for full details. For example, adding <code>dtparam=fan_temp0=55000</code> to <code>/boot/firmware/config.txt</code> will cause the fan to remain off until the Raspberry Pi 5's temperature reaches 55°C.</div>
+<p>At boot the fan is turned on, and the tachometer input is checked to see if the fan is spinning. If it is, then the <code>cooling_fan</code> device tree overlay is enabled. This overlay is in <code>bcm2712-rpi-5-b.dtb</code> by default, but with <code>status=disabled</code>.</p>
+<h4 class="lv5">Raspberry Pi 5 fan connector pinout</h4>
+<p>The Raspberry Pi 5 fan connector is a 1 mm pitch JST-SH socket containing the following four pins:</p>
+<table><tr><th>Pin</th><th>Function</th><th>Wire colour</th></tr><tr><td>1</td><td>+5V</td><td>Red</td></tr><tr><td>2</td><td>PWM</td><td>Blue</td></tr><tr><td>3</td><td>GND</td><td>Black</td></tr><tr><td>4</td><td>Tach</td><td>Yellow</td></tr></table>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Frequency management and thermal control”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-pcie">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Raspberry Pi connector for PCIe</h2>
+<div class="cap">Raspberry Pi connector for PCIe</div>
+<p>Raspberry Pi 5 has an FPC connector on the left side of the board. This connector breaks out a PCIe Gen 2.0 ×1 interface for fast peripherals.</p>
+<p>To connect a PCIe HAT+ device, connect it to your Raspberry Pi. Your Raspberry Pi should automatically detect the device. To connect a non-HAT+ device, connect it to your Raspberry Pi, then manually enable PCIe.</p>
+<p>For more information about the PCIe FPC connector pinout and other details needed to create third-party devices, accessories, and HATs, see the Raspberry Pi Connector for PCIe standards document. It should be read alongside the Raspberry Pi HAT+ Specification.</p>
+<div class="note"><b>NOTE</b>Only certain devices support enumeration of PCIe devices behind a switch.</div>
+<h3 class="lv3">Enable PCIe</h3>
+<p>By default, the PCIe connector is not enabled unless connected to a HAT+ device. To enable the connector, add the following line to <code>/boot/firmware/config.txt</code>:</p>
+<pre>dtparam=pciex1</pre>
+<p>Reboot with <code>sudo reboot</code> for the configuration changes to take effect.</p>
+<div class="note"><b>NOTE</b>You can also use the alias <code>nvme</code>.</div>
+<h3 class="lv3">Boot from PCIe</h3>
+<p>By default, Raspberry Pi devices do not boot from PCIe storage. To enable boot from PCIe, change the <code>BOOT_ORDER</code> in the bootloader configuration. Edit the EEPROM configuration with the following command:</p>
+<pre>$ sudo rpi-eeprom-config --edit</pre>
+<p>Replace the <code>BOOT_ORDER</code> line with the following line:</p>
+<pre>BOOT_ORDER=0xf416</pre>
+<p>To boot from a non-HAT+ device, also add the following line:</p>
+<pre>PCIE_PROBE=1</pre>
+<p>After saving your changes, reboot your Raspberry Pi with <code>sudo reboot</code> to update the EEPROM.</p>
+<h3 class="lv3">PCIe Gen 3.0</h3>
+<div class="note"><b>WARNING</b>The Raspberry Pi 5 isn't certified for Gen 3.0 speeds. PCIe Gen 3.0 connections might be unstable.</div>
+<p>By default, Raspberry Pi 5 uses Gen 2.0 speeds (5 GT/s). Use one of the following approaches to enable Gen 3.0 (8 GT/s) speeds:</p>
+<h4 class="tab"><code>raspi-config</code></h4>
+<p>Run the following command to open the Raspberry Pi Configuration CLI:</p>
+<pre>$ sudo raspi-config</pre>
+<p>Complete the following steps to enable PCIe Gen 3.0 speeds:</p>
+<ol><li>Select <code>Advanced Options</code>.</li><li>Select <code>PCIe Speed</code>.</li><li>Choose <code>Yes</code> to enable PCIe Gen 3 mode.</li><li>Select <code>Finish</code> to exit.</li><li>Reboot your Raspberry Pi with <code>sudo reboot</code> for your changes to take effect.</li></ol>
+<h4 class="tab"><code>config.txt</code></h4>
+<p>To enable PCIe Gen 3.0 speeds, add the following line to <code>/boot/firmware/config.txt</code>:</p>
+<pre>dtparam=pciex1_gen=3</pre>
+<p>Reboot your Raspberry Pi with <code>sudo reboot</code> for these settings to take effect.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Raspberry Pi connector for PCIe”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-btn">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Power button</h2>
+<div class="note"><b>NOTE</b>This section only applies to Raspberry Pi models with a power button, such as the Raspberry Pi 5.</div>
+<p>When you plug your Raspberry Pi into power for the first time, it will automatically turn on and boot into the operating system without having to push the button.</p>
+<p>If you run Raspberry Pi Desktop, you can initiate a clean shutdown by briefly pressing the power button. A window will appear asking whether you want to shutdown, reboot, or logout.</p>
+<p>Select an option or press the power button again to initiate a clean shutdown.</p>
+<div class="note"><b>NOTE</b>If you run Raspberry Pi Desktop, you can press the power button twice in quick succession to shut down. If you run Raspberry Pi OS Lite without a desktop, press the power button a single time to initiate a shutdown.</div>
+<h3 class="lv3">Restart</h3>
+<p>If the Raspberry Pi board is turned off, but still connected to power, pressing the power button restarts the board.</p>
+<div class="note"><b>NOTE</b>Resetting the Power Management Integrated Circuit (PMIC) can also restart the board. Connecting a HAT can reset the PMIC. Always disconnect your device from the power supply before connecting a HAT.</div>
+<h3 class="lv3">Hard shutdown</h3>
+<p>To force a hard shutdown, press and hold the power button.</p>
+<h3 class="lv3">Add your own power button</h3>
+<div class="cap">The J2 jumper</div>
+<p>The J2 jumper is located between the RTC battery connector and the board edge. This breakout allows you to add your own power button to Raspberry Pi 5 by adding a Normally Open (NO) momentary switch bridging the two pads. Briefly closing this switch will perform the same actions as the onboard power button.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Power button”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-led">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Configuration</span></div>
+<h4 class="lv4">Raspberry Pi 5 and 500+ LEDs</h4>
+<p>Raspberry Pi 5 and 500+ use a bi-colour (red and green) LED to indicate power and activity.</p>
+<p>On Raspberry Pi 5, the power LED is located next to the power button; if assembled into a Raspberry Pi 5 case, the power button and LED appear integrated behind a single pressable lens.</p>
+<p>On Raspberry Pi 500+, the power LED is located underneath the power key.</p>
+<p>On both Raspberry Pi 5 and 500+, the bi-colour power LED (described in power leds):</p>
+<ul><ul><li>Illuminates red when power is first applied.</li><li>Changes to green as firmware startup progresses.</li><li>Remains green while the system is running.</li><li>Flashes off to indicate microSD card activity. It doesn't flash if you're booting from the internal SSD on a Raspberry Pi 500+, or from an SSD on an M.2 HAT+ on a Raspberry Pi 5.</li></ul></li></ul>
+<p>After the operating system has been shut down, the LED changes to red to indicate the low-power standby state.</p>
+<div class="note"><b>NOTE</b>The power button on Raspberry Pi 5 and the power key on Raspberry Pi 500+ allows the computer to enter a soft-off state. In this state, the CPU and most system activity stops, but the power rails remain active and the system can be restarted by pressing the power button or key again, or by removing and restoring power as normal.</div>
+<p>For more detailed information about Raspberry Pi 500+, see Keyboard computers.</p><h3 class="lv3">Check LED warning codes</h3>
+<p>If a Raspberry Pi device fails to boot or shuts down unexpectedly, the on-board LED often provides a diagnostic signal in the form of a specific flashing pattern. Long flashes always occur before short ones that indicate the exact issue; sometimes there are no long flashes at all. In most cases, the pattern repeats after a two-second pause.</p>
+<table><tr><th>Long flashes</th><th>Short flashes</th><th>Status</th></tr><tr><td>0</td><td>3</td><td>Generic failure to boot</td></tr><tr><td>0</td><td>4</td><td><code>start*.elf</code> not found</td></tr><tr><td>0</td><td>7</td><td>Kernel image not found</td></tr><tr><td>0</td><td>8</td><td>SDRAM failure</td></tr><tr><td>0</td><td>9</td><td>Insufficient SDRAM</td></tr><tr><td>0</td><td>10</td><td>In HALT state</td></tr><tr><td>1</td><td>2</td><td>SD card overcurrent detected</td></tr><tr><td>2</td><td>1</td><td>Partition not FAT</td></tr><tr><td>2</td><td>2</td><td>Failed to read from partition</td></tr><tr><td>2</td><td>3</td><td>Extended partition not FAT</td></tr><tr><td>2</td><td>4</td><td>File signature/hash mismatch (Raspberry Pi 4 and 5)</td></tr><tr><td>3</td><td>1</td><td>SPI EEPROM error (Raspberry Pi 4 and 5)</td></tr><tr><td>3</td><td>2</td><td>SPI EEPROM is write protected (Raspberry Pi 4 and 5)</td></tr><tr><td>3</td><td>3</td><td>I2C error (Raspberry Pi 4 and 5)</td></tr><tr><td>3</td><td>4</td><td>Secure-boot configuration isn't valid</td></tr><tr><td>4</td><td>3</td><td>RP1 not found</td></tr><tr><td>4</td><td>4</td><td>Unsupported board type</td></tr><tr><td>4</td><td>5</td><td>Fatal firmware error</td></tr><tr><td>4</td><td>6</td><td>Power failure type A</td></tr><tr><td>4</td><td>7</td><td>Power failure type B</td></tr></table>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “LED behaviour”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-vid">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › config.txt</span></div>
+<h3 class="lv3">Composite video mode</h3>
+<p>Composite video output can be found on each model of Raspberry Pi computer:</p>
+<table><tr><th>model</th><th>composite output</th></tr><tr><td>Raspberry Pi 1 A and B</td><td>RCA jack</td></tr><tr><td>Raspberry Pi Zero</td><td>Unpopulated <code>TV</code> header</td></tr><tr><td>Raspberry Pi Zero 2 W</td><td>Test pads on underside of board</td></tr><tr><td>Raspberry Pi 5</td><td>J7 pad next to HDMI socket</td></tr><tr><td>All other models</td><td>3.5 mm AV jack</td></tr></table>
+<div class="note"><b>NOTE</b>Composite video output is not available on Keyboard models.</div>
+<h4 class="lv4"><code>enable_tvout</code></h4>
+<p>Set to <code>1</code> to enable composite video output and <code>0</code> to disable. On Flagship models since Raspberry Pi 4, Compute Modules since CM4, and Zero models, composite output is only available if you set this to <code>1</code>, which also disables HDMI output. Composite output is not available on Keyboard models.</p>
+<table><tr><th>Model</th></tr><tr><td>Default</td></tr><tr><td>Flagship models since Raspberry Pi 4B, Compute Modules since CM4, Keyboard models</td></tr><tr><td>0</td></tr><tr><td>All other models</td></tr><tr><td>1</td></tr></table>
+<p>On supported models, you must disable HDMI output to enable composite output. HDMI output is disabled when no HDMI display is detected. Set <code>enable_tvout=0</code> to prevent composite being enabled when HDMI is disabled.</p>
+<p>To enable composite output, append <code>,composite</code> to the end of the <code>dtoverlay=vc4-kms-v3d</code> line in /boot/firmware/config.txt:</p>
+<pre>dtoverlay=vc4-kms-v3d,composite</pre>
+<p>By default, this outputs composite NTSC video. To choose a different mode, instead append the following to the single line in <code>/boot/firmware/cmdline.txt</code>:</p>
+<pre>vc4.tv_norm=&lt;video_mode&gt;</pre>
+<p>Replace the <code>&lt;video_mode&gt;</code> placeholder with one of the following values:</p>
+<ul><li><code>NTSC</code></li><li><code>NTSC-J</code></li><li><code>NTSC-443</code></li><li><code>PAL</code></li><li><code>PAL-M</code></li><li><code>PAL-N</code></li><li><code>PAL60</code></li><li><code>SECAM</code></li></ul>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Composite video mode”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-sd">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Accessories › SD Cards</span></div>
+<h2 class="lv2">About</h2>
+<div class="cap">A Raspberry Pi SD Card inserted into a Raspberry Pi 5</div>
+<p>SD card quality is a critical factor in determining the overall user experience for a Raspberry Pi. Slow bus speeds and lack of command queueing can reduce the performance of even the most powerful Raspberry Pi models.</p>
+<p>Raspberry Pi official microSD cards support DDR50 and SDR104 bus speeds. Additionally, Raspberry Pi SD cards support the command queueing (CQ) extension, which permits some pipelining of random read operations, ensuring optimal performance.</p>
+<p>You can even buy Raspberry Pi SD cards pre-programmed with the latest version of Raspberry Pi OS.</p>
+<p>Raspberry Pi SD cards are available in the following sizes:</p>
+<ul><li>32 GB</li><li>64 GB</li><li>128 GB</li></ul><h2 class="lv2">Specifications</h2>
+<div class="cap">A 128 GB Raspberry Pi SD Card</div>
+<p>Raspberry Pi SD cards use the SD6.1 SD specification.</p>
+<p>Raspberry Pi SD cards use the microSDHC/microSDXC form factor.</p>
+<p>Raspberry Pi SD cards have the following Speed Class ratings: C10, U3, V30, A2.</p>
+<p>The following table describes the read and write speeds of Raspberry Pi SD cards using 4 kB of random data:</p>
+<table><tr><th>Raspberry Pi Model</th><th>Interface</th><th>Read Speed</th><th>Write Speed</th></tr><tr><td>4</td><td>DDR50</td><td>3,200 IOPS</td><td>1,200 IOPS</td></tr><tr><td>5</td><td>SDR104</td><td>5,000 IOPS</td><td>2,000 IOPS</td></tr></table>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “SD Cards”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-wp">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h4 class="lv4">EEPROM write protect</h4>
+<p>Both the bootloader and VLI EEPROMs support hardware write protection.  See the eeprom_write_protect option for more information about how to enable this when flashing the EEPROMs.</p><h4 class="lv4"><code>eeprom_write_protect</code></h4>
+<p>Configures the EEPROM <code>write status register</code>. This can be set either to mark the entire EEPROM as write-protected, or to clear write-protection.</p>
+<p>This option must be used in conjunction with the EEPROM <code>/WP</code> pin which controls updates to the EEPROM <code>Write Status Register</code>.  Pulling <code>/WP</code> low (CM4 <code>EEPROM_nWP</code> or on a Raspberry Pi 4 <code>TP5</code>) does NOT write-protect the EEPROM unless the <code>Write Status Register</code> has also been configured.</p>
+<p>See the Winbond W25x40cl or Winbond W25Q16JV datasheets for further details.</p>
+<p><code>eeprom_write_protect</code> settings in <code>config.txt</code> for <code>recovery.bin</code>.</p>
+<table><tr><th>Value</th><th>Description</th></tr><tr><td>1</td><td>Configures the write protect regions to cover the entire EEPROM.</td></tr><tr><td>0</td><td>Clears the write protect regions.</td></tr><tr><td>-1</td><td>Do nothing.</td></tr></table>
+<div class="note"><b>NOTE</b><code>flashrom</code> does not support clearing of the write-protect regions and will fail to update the EEPROM if write-protect regions are defined.</div>
+<p>On Raspberry Pi 5 <code>/WP</code> is pulled low by default and consequently write-protect is enabled as soon as the <code>Write Status Register</code> is configured. To clear write-protect pull <code>/WP</code> high by connecting <code>TP14</code> and <code>TP1</code>.</p>
+<p>Default: <code>-1</code></p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “EEPROM write protect”, “eeprom_write_protect”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
+<template id="man-reg">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Raspberry Pi</span></div>
+<h2 class="lv2">Product compliance and safety</h2>
+<p>All Raspberry Pi products have undergone extensive compliance testing. For more information see the Product Information Portal.</p>
+<h3 class="lv3">Flammability rating</h3>
+<p>The PCBs used in Raspberry Pi devices adhere to UL94-V0.</p>
+<div class="note"><b>NOTE</b>This applies to the PCBs only.</div>
+<h3 class="lv3">Raspberry Pi Compliance Support</h3>
+<p>The Compliance Support programme is designed to eliminate the burden of navigating compliance issues and make it easier for companies to bring new products to consumers. It provides access to the same test engineers who worked on our Raspberry Pi devices during their compliance testing, connecting the user to a dedicated team at UL who assess and test the user's product, facilitated by their in-depth knowledge of Raspberry Pi.</p>
+<p>Find out more about the Raspberry Pi Compliance Support Programme.</p>
+<h3 class="lv3">Powered by Raspberry Pi</h3>
+<p>The Powered by Raspberry Pi program provides a process for companies wanting to use a form of the Raspberry Pi logo, and covers products with Raspberry Pi computers or silicon inside, and services provided by a Raspberry Pi. If you wish to start the process to apply you can do so online.</p>
+<h3 class="lv3">Approved Design Partners</h3>
+<p>Our list of Approved Design Partners provides a set of consultancies which we work closely with and support so they can provide paid-for design services across hardware, software, and mechanical fields.</p>
+<div class="src">Excerpt from the Raspberry Pi Documentation (raspberrypi.com/documentation): “Product compliance and safety”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Images, links and some sections omitted.</div>
+</template>
 <div id="menu" hidden><div class="wrap"><h3>Contents <span>M or Esc to close · ← → to move</span></h3><ol id="menuList"></ol></div></div>
 <div id="hint">← → navigate · M contents · F full screen</div>
 
@@ -783,7 +1134,9 @@ const BACKS=[
 ];
 
 /* ---------- manual pages (official docs, CC BY-SA 4.0) ---------- */
-const DET={hdmi0:'man-hdmi',hdmi1:'man-hdmi'}, DETB={};
+const DET={soc:'man-soc',rp1:'man-rp1',pmic:'man-pmic',wifi:'man-wifi',gpio:'man-gpio',usb2:'man-usb',usb3:'man-usb',eth:'man-poe',usbc:'man-usbc',
+  hdmi0:'man-hdmi',hdmi1:'man-hdmi',uart:'man-uart',bat:'man-bat',cd0:'man-cam',cd1:'man-cam',poe:'man-poe',fan:'man-fan',pcie:'man-pcie',btn:'man-btn',led:'man-led',vid:'man-vid'},
+  DETB={sd:'man-sd',wp:'man-wp',gpio:'man-gpio',reg:'man-reg'};
 /* ---------- crops ---------- */
 function paintCrop(el){
   const [x,y,w,h]=el.dataset.r.split(',').map(Number); const im=el.dataset.img==='back'?BACK:TOP;
@@ -798,7 +1151,7 @@ function paintCrop(el){
 /* ---------- board maps ---------- */
 function makeMap(host,info,idx,list,img,det){
   const spots=[], btns=[]; let cur=-1, timer=null, touched=false;
-  const pop=document.createElement('div'); pop.className='kf'; pop.setAttribute('role','dialog'); host.appendChild(pop); let popI=-1;
+  const pop=document.createElement('div'); pop.className='kf man'; pop.setAttribute('role','dialog'); host.appendChild(pop); let popI=-1;
   pop.addEventListener('click',e=>e.stopPropagation());
   host.addEventListener('click',e=>{ if(!e.target.closest('.spot')) closePop(); });
   function openPop(i){ const d=list[i], t=det[d.k] && document.getElementById(det[d.k]); if(!t){ closePop(); return; } popI=i;
