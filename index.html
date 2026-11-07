@@ -22,7 +22,7 @@
 <meta name="theme-color" content="#0a0f0d">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0f0d'/%3E%3Cg stroke='%233fd2e6' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M22 8v8M32 8v8M42 8v8M22 48v8M32 48v8M42 48v8M8 22h8M8 32h8M8 42h8M48 22h8M48 32h8M48 42h8'/%3E%3C/g%3E%3Crect x='16' y='16' width='32' height='32' rx='6' fill='%23ff4f7e'/%3E%3Ctext x='32' y='40' font-family='Arial' font-weight='700' font-size='20' text-anchor='middle' fill='%230a0f0d'%3E5%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
 :root{
   --bg:#0a0f0d; --bg2:#0f1613; --panel:#131c18; --panel2:#18231e; --line:#24332c; --line2:#31443b;
@@ -152,6 +152,29 @@ kbd{font-family:var(--mono);font-size:22px;border:1px solid var(--line2);border-
 .kf li{position:relative;padding-left:28px;font-size:24px;line-height:1.38;color:var(--ink)}
 .kf li::before{content:"";position:absolute;left:4px;top:12px;width:10px;height:10px;border-radius:3px;background:var(--c);box-shadow:0 0 10px var(--c)}
 .kf .hint{margin-top:16px;font:400 18px var(--mono);color:#5d7067}
+.kf.man{width:640px;top:16px;bottom:16px;max-height:none;transform:scale(.97);padding:0;background:#f6f4ee;border:1px solid #d9d4c7;border-radius:6px;
+  box-shadow:0 30px 90px rgba(0,0,0,.7);backdrop-filter:none;-webkit-backdrop-filter:none}
+.kf.man.open{transform:none}
+.kf.man .x{background:#f6f4ee;color:#222;border-color:#bdb7a8;z-index:2}
+.kf.man .x:hover{color:#000;border-color:#000}
+.sheet{position:absolute;inset:0;overflow-y:auto;padding:30px 44px 30px;color:#141414;font-family:'Source Serif 4',Georgia,serif;font-size:21px;line-height:1.5}
+.sheet::-webkit-scrollbar{width:10px}.sheet::-webkit-scrollbar-thumb{background:#c9c3b4;border-radius:5px}
+.sheet .run{display:flex;justify-content:space-between;gap:20px;white-space:nowrap;font:400 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#555;border-bottom:1.5px solid #141414;padding-bottom:8px;margin-right:46px}
+.sheet h1{font-family:'Source Serif 4',Georgia,serif;font-size:34px;font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:22px 0 4px;color:#000}
+.sheet h2{font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:600;margin:26px 0 6px;color:#000;letter-spacing:0}
+.sheet h2 .no{font-family:var(--mono);font-size:16px;color:#666;margin-right:10px;font-weight:400}
+.sheet p{margin:8px 0}
+.sheet .cap{font-style:italic;font-size:18px;color:#333;margin:16px 0 6px}
+.sheet table{width:100%;border-collapse:collapse;font-size:17px;line-height:1.35;margin:4px 0 10px}
+.sheet th{text-align:left;font-weight:600;border-top:1.5px solid #141414;border-bottom:1px solid #141414;padding:6px 8px}
+.sheet td{border-bottom:1px solid #cfc9bb;padding:7px 8px;vertical-align:top}
+.sheet code{font-family:var(--mono);font-size:.82em;background:#e8e4d9;padding:1px 5px;border-radius:3px}
+.sheet pre{font-family:var(--mono);font-size:16px;background:#141414;color:#f1efe8;padding:12px 16px;border-radius:4px;margin:10px 0;white-space:pre-wrap}
+.sheet ul{margin:6px 0 10px 24px}.sheet li{margin:5px 0}
+.sheet .note{border-left:3px solid #141414;padding:4px 0 4px 14px;margin:12px 0;font-size:19px}
+.sheet .note b{font-family:var(--mono);font-size:15px;letter-spacing:.1em;margin-right:6px}
+.sheet .src{margin-top:26px;padding-top:10px;border-top:1px solid #141414;font-size:15px;line-height:1.45;color:#444;font-family:var(--body)}
+.sheet .gap{text-align:center;color:#888;letter-spacing:.5em;margin:14px 0}
 /* ---------- arch diagram ---------- */
 svg.arch{width:100%;height:auto;overflow:visible}
 .arch .node rect.b{fill:#111a16;stroke:#2b3c34;stroke-width:1.5}
@@ -309,7 +332,7 @@ body.og #s-cover .start,body.og #hint{display:none!important}
     <div class="rise" style="--d:3">
       <div class="card info" id="infoTop"></div>
       <div class="idx" id="idxTop"></div>
-      <div class="legend"><span><i class="dot" style="--c:var(--rasp)"></i>compute</span><span><i class="dot" style="--c:var(--cyan)"></i>data</span><span><i class="dot" style="--c:var(--amber)"></i>power</span><span><i class="dot" style="--c:var(--lime)"></i>expansion</span><span style="color:var(--ink2)">· click a part for key facts</span></div>
+      <div class="legend"><span><i class="dot" style="--c:var(--rasp)"></i>compute</span><span><i class="dot" style="--c:var(--cyan)"></i>data</span><span><i class="dot" style="--c:var(--amber)"></i>power</span><span><i class="dot" style="--c:var(--lime)"></i>expansion</span><span style="color:var(--ink2)">· click an HDMI port for its manual page</span></div>
     </div>
   </div>
 </section>
@@ -674,6 +697,38 @@ body.og #s-cover .start,body.og #hint{display:none!important}
 </div>
 </div></div>
 
+<template id="man-hdmi">
+<div class="run"><span>Raspberry Pi Documentation</span><span>Computers › Configuration</span></div>
+<h1>Audio and visual output</h1>
+<h2><span class="no">§</span>Configure display settings</h2>
+<p>With most HDMI monitors, Raspberry Pi OS uses the highest resolution and refresh rate supported by your Raspberry Pi and your monitor. Connect the cables before turning on your Raspberry Pi.</p>
+<div class="cap">Display capabilities of Raspberry Pi models</div>
+<table>
+<tr><th>Models</th><th>HDMI type</th><th>Cable adapter</th><th>Max displays</th><th>Max resolution</th></tr>
+<tr><td>Raspberry Pi 4B and 400, and Compute Module 4</td><td>Dual micro HDMI</td><td>Requires a micro-HDMI-to-HDMI cable or adapter for each display you want to attach</td><td>2 (except CM4S)</td><td>Two 4K at 30 Hz or one 4K at 60 Hz</td></tr>
+<tr><td>Raspberry Pi 5, 500, and 500+, and Compute Module 5</td><td>Dual micro HDMI</td><td>Requires a micro-HDMI-to-HDMI cable or adapter for each display you want to attach</td><td>2</td><td>Two 4K at 60 Hz</td></tr>
+</table>
+<p>Raspberry Pi 5, 500, 500+, and Compute Module 5 support two displays with resolution up to 3840 × 2160 pixels (4K; Ultra HD) at a 60 Hz refresh rate with no additional configuration. You can adjust your display resolution and screen orientation through the desktop and through the console.</p>
+<p>On systems without a desktop environment (running in console mode), display settings must be configured manually. Recent Raspberry Pi OS versions allow you to use Kernel Mode Setting (KMS) to configure display settings. This is done by adding the <code>video=</code> parameter to your kernel command line file (<code>cmdline.txt</code>).</p>
+<h2><span class="no">§</span>CLI (basic resolution)</h2>
+<p>Use the following format to specify the display, resolution, and refresh rate, replacing <code>&lt;display&gt;</code> with the display port, <code>&lt;width&gt;x&lt;height</code> with the screen resolution, and <code>&lt;refresh_rate&gt;</code> with the refresh rate in Hz:</p>
+<pre>$ video=&lt;display&gt;:&lt;width&gt;x&lt;height&gt;M@&lt;refresh_rate&gt;</pre>
+<p>For example, <code>video=HDMI-A-1:1920x1080M@60</code> translates to: use the HDMI-A-1 display at 1920 by 1080 resolution with a 60 Hz refresh rate.</p>
+<p>If you don’t specify a resolution, your Raspberry Pi tries to guess it based on your monitor’s Extended Display Identification Data (EDID). It automatically chooses the best resolution supported by your display based on information in the Linux kernel.</p>
+<p>Your display port can be any of the following:</p>
+<ul>
+<li><code>HDMI-A-1</code>: The first HDMI display output (often called HDMI 1 in software). On a Raspberry Pi 4B and 5, this corresponds to the HDMI port labelled HDMI0 on the board silkscreen; on single-HDMI models, this corresponds to the HDMI port labelled HDMI.</li>
+<li><code>HDMI-A-2</code>: The second HDMI display output (often called HDMI 2 in software). On a Raspberry Pi 4B and 5, this corresponds to the HDMI port labelled HDMI1 on the board silkscreen.</li>
+<li><code>DSI-1</code>: DSI or DPI.</li>
+<li><code>Composite-1</code>: Composite.</li>
+</ul>
+<div class="note"><b>NOTE</b>When using console mode with multiple displays, all connected displays share the same rotation settings.</div>
+<div class="gap">· · ·</div>
+<div class="run" style="margin-top:6px"><span>Raspberry Pi Documentation</span><span>config.txt › Video options</span></div>
+<h2><span class="no">§</span>HDMI Pipeline for 5-series devices</h2>
+<p>Raspberry Pi 5 and later, Raspberry Pi Compute Module 5 and later, and Raspberry Pi 500 and later, also work at two output pixels per clock cycle. These models have special handling for odd timings and can handle these modes directly.</p>
+<div class="src">Excerpts from the Raspberry Pi Documentation (raspberrypi.com/documentation), “Audio and visual output” and “Video options”. © Raspberry Pi Ltd, licensed under CC BY-SA 4.0. Trimmed to the parts relevant to Raspberry Pi 5; rows for other models and some sections omitted.</div>
+</template>
 <div id="menu" hidden><div class="wrap"><h3>Contents <span>M or Esc to close · ← → to move</span></h3><ol id="menuList"></ol></div></div>
 <div id="hint">← → navigate · M contents · F full screen</div>
 
@@ -721,43 +776,8 @@ const BACKS=[
  {k:'rf',c:C.data,r:[1480,180,90,250],t:'"Uses technology licensed from Abracon"',s:'licensing note',p:'A credit printed for patented technology used on the board.',w:'—'}
 ];
 
-/* ---------- pop-up: key facts per part ---------- */
-const DET={
- soc:['4× Cortex-A76 at 2.4 GHz, 512 KB L2 per core, 2 MB shared L3','VideoCore VII GPU: OpenGL ES 3.1 and Vulkan 1.3','4Kp60 HEVC decode; video encoding runs on the CPU'],
- ram:['LPDDR4X at 4267 MT/s on a 32-bit bus','About 17 GB/s peak bandwidth','Made in 1, 2, 4, 8 and 16 GB versions'],
- rp1:['Made on TSMC’s 40 nm process','Linked to the SoC by four PCIe 2.0 lanes','Two USB host controllers, Gigabit Ethernet MAC, two 4-lane MIPI links, 28 GPIOs'],
- pmic:['Renesas DA9091, nicknamed “Gilmour”','Eight switch-mode power supplies in one package','Also runs the real-time clock and the power button'],
- wifi:['Infineon CYW43455 radio','Dual-band 802.11ac Wi-Fi and Bluetooth 5.0 / BLE','Wi-Fi uses SDIO, Bluetooth a UART, both straight to the SoC'],
- phy:['Broadcom BCM54213 Gigabit PHY','Talks to RP1 over RGMII','Turns digital frames into signals on the four cable pairs'],
- gpio:['40 pins: 28 GPIOs plus 5 V, 3.3 V and ground','3.3 V logic: 5 V on a GPIO pin can damage it','Pins 27 and 28 are reserved for a HAT’s ID chip'],
- usb2:['Two USB 2.0 ports at 480 Mb/s','Hosted by RP1, one per USB controller','Ports share 1.6 A on a 5 A supply (0.6 A on 3 A)'],
- usb3:['Two USB 3.0 ports at 5 Gb/s each','Both run at full speed at the same time','Ideal for SSDs and fast cameras'],
- eth:['Gigabit Ethernet, about 940 Mb/s in practice','Magnetics inside the jack isolate the board','Power over Ethernet with the PoE+ HAT'],
- usbc:['USB-C, power only (no data)','Asks the supply for 5 A via USB Power Delivery','Official supply: 27 W, 5.1 V at 5 A'],
- hdmi0:['micro-HDMI (Type D)','4Kp60 with HDR','The default port for the desktop'],
- hdmi1:['micro-HDMI (Type D)','4Kp60 with HDR','Runs at the same time as HDMI 0'],
- uart:['3-pin JST connector','A BCM2712 UART (/dev/ttyAMA10), 3.3 V','Frees the GPIO header’s UART pins'],
- bat:['2-pin connector for a backup cell','Use a rechargeable lithium-manganese cell','Charging is off by default; turn it on in config.txt'],
- cd0:['22-pin, 0.5 mm FPC connector','4 MIPI lanes, camera (CSI-2) or display (DSI)','Older 15-pin cameras need an adapter cable'],
- cd1:['22-pin, 0.5 mm FPC connector','4 MIPI lanes, camera or display','Two cameras can run at once'],
- poe:['4-pin header next to the Ethernet jack','Carries power from the cable to a PoE+ HAT','Lets one Ethernet cable power the Pi'],
- fan:['4-pin JST-SH: 5 V, ground, PWM and tachometer','Speed set by RP1’s PWM; the tach reports RPM','Firmware steps at 50, 60, 67.5 and 75 °C'],
- pcie:['16-pin, 0.5 mm FPC socket','One PCIe 2.0 lane, straight from the SoC','Gen 3 can be enabled but is not certified'],
- btn:['Press to start from halt','Desktop: press for the shutdown menu, press again to confirm','Hold to force power off; J2 pads take an external button'],
- led:['Green (STAT): SD card and OS activity','Red (PWR): power status','Blink patterns report boot errors'],
- vid:['Analog composite video, PAL or NTSC','Generated by RP1’s video encoder','Two pads labelled J7, to solder a cable to']
-};
-const DETB={
- sd:['Push-push microSD slot','SDR104 mode, up to 104 MB/s bus speed','The default boot device'],
- caps:['Dozens of tiny capacitors under the SoC','They store charge right next to the chip','They smooth out sudden current spikes'],
- wp:['Two test pads, TP14 and TP1','Bridging them write-protects the bootloader flash','Normally left open, so updates work'],
- gpio:['The 40 header pins pass through the board','Soldered at the factory','Each joint is a mechanical and electrical link'],
- tp:['Pads labelled TP1 to TP76','Probe points for power rails and signals','Used for factory testing'],
- reg:['FCC ID 2ABCB-RPI5 (USA)','Plus marks for Canada, Korea, Brazil, Japan and more','Needed because the board has a radio'],
- legs:['Through-hole legs of the USB and Ethernet jacks','They anchor the big connectors','They also tie the metal shields to ground'],
- rf:['A printed licensing credit','Abracon makes timing and RF components','Credits patented technology used under licence']
-};
-
+/* ---------- manual pages (official docs, CC BY-SA 4.0) ---------- */
+const DET={hdmi0:'man-hdmi',hdmi1:'man-hdmi'}, DETB={};
 /* ---------- crops ---------- */
 function paintCrop(el){
   const [x,y,w,h]=el.dataset.r.split(',').map(Number); const im=el.dataset.img==='back'?BACK:TOP;
@@ -775,11 +795,12 @@ function makeMap(host,info,idx,list,img,det){
   const pop=document.createElement('div'); pop.className='kf'; pop.setAttribute('role','dialog'); host.appendChild(pop); let popI=-1;
   pop.addEventListener('click',e=>e.stopPropagation());
   host.addEventListener('click',e=>{ if(!e.target.closest('.spot')) closePop(); });
-  function openPop(i){ const d=list[i], f=det[d.k]; if(!f) return; popI=i;
+  function openPop(i){ const d=list[i], t=det[d.k] && document.getElementById(det[d.k]); if(!t){ closePop(); return; } popI=i;
     const side=(d.r[0]+d.r[2]/2)/img.W<.5?'r':'l';
-    pop.className='kf '+side; pop.style.setProperty('--c',d.c);
-    pop.innerHTML=`<button class="x" aria-label="Close">×</button><div class="ph"><div class="crop" data-img="${img===BACK?'back':'top'}" data-r="${d.r.join(',')}" data-pad="1.5"></div><div><div class="n">${String(i+1).padStart(2,'0')} · key facts</div><h3>${d.t}</h3><div class="sub">${d.s}</div></div></div><ul>${f.map(x=>`<li>${x}</li>`).join('')}</ul><div class="hint">Esc, × or click outside to close</div>`;
-    paintCrop(pop.querySelector('.crop')); pop.querySelector('.x').onclick=closePop;
+    pop.className='kf man '+side;
+    pop.innerHTML=`<button class="x" aria-label="Close">×</button><div class="sheet"></div>`;
+    pop.querySelector('.sheet').appendChild(t.content.cloneNode(true)); pop.querySelector('.sheet').scrollTop=0;
+    pop.querySelector('.x').onclick=closePop;
     requestAnimationFrame(()=>pop.classList.add('open')); }
   function closePop(){ pop.classList.remove('open'); popI=-1; }
   list.forEach((d,i)=>{
